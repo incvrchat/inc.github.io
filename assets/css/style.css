@@ -633,6 +633,56 @@ h3 {
   line-height: 2
 }
 
+.resources-intro {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2;
+  max-width: 760px
+}
+
+.resources-card-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px
+}
+
+.resources-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid #d4dbe1;
+  border-radius: 8px;
+  background-color: var(--color-white)
+}
+
+.resources-card h3 {
+  width: auto;
+  margin-right: 0;
+  margin-bottom: 0
+}
+
+.resources-card p {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2
+}
+
+.resources-card-link {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-link)
+}
+
+.resources-note {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-gray)
+}
+
 .theme-img {
   width: auto;
   display: flex;
@@ -1362,6 +1412,12 @@ footer {
     width: 260px
   }
 
+  .resources-card h3 {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 12px
+  }
+
   .h3-number:before {
     font-size: 9pt;
     margin-bottom: 3px
@@ -1397,6 +1453,15 @@ footer {
     height: auto;
     max-height: 200px;
     max-width: 100%
+  }
+
+  .resources-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px
+  }
+
+  .resources-card {
+    padding: 28px
   }
 
   .motto-wrapp h3 {

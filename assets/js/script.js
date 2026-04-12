@@ -7,8 +7,8 @@
     // @@@ 大学ロゴを違う要素に複製する
     const targetLogo = document.querySelector(".logo-university img");
     const targetLogoPcImg = document.querySelector(".logo-university-pc img");
-    const src = targetLogo.getAttribute("src");
-    if (targetLogo) {
+    if (targetLogo && targetLogoPcImg) {
+      const src = targetLogo.getAttribute("src");
       targetLogoPcImg.setAttribute("src", src);
     }
 
@@ -55,18 +55,23 @@
     createGlobalNav();
 
     const hashTarget = document.querySelector(".nav-drop-main a");
-    const hash = hashTarget.getAttribute("href");
+    const hash = hashTarget ? hashTarget.getAttribute("href") : null;
 
-    dropLists.forEach((dropList, index) => {
-      const accordionWrapp = document.querySelector(".nav-drop ul");
-      const acoItem = document.createElement("li");
-      const acoHref = document.createElement("a");
-      acoHref.href = hash;
-      acoHref.textContent = dropList.getAttribute("data-index");
-      acoItem.setAttribute("data-slide", index + 1);
-      acoItem.appendChild(acoHref);
-      accordionWrapp.appendChild(acoItem);
-    });
+    if (hash) {
+      dropLists.forEach((dropList, index) => {
+        const accordionWrapp = document.querySelector(".nav-drop ul");
+        if (!accordionWrapp) {
+          return;
+        }
+        const acoItem = document.createElement("li");
+        const acoHref = document.createElement("a");
+        acoHref.href = hash;
+        acoHref.textContent = dropList.getAttribute("data-index");
+        acoItem.setAttribute("data-slide", index + 1);
+        acoItem.appendChild(acoHref);
+        accordionWrapp.appendChild(acoItem);
+      });
+    }
 
     // @@@@@ windowリサイズ時にリロードをさせる
     const breakPoint = 769;
@@ -326,78 +331,88 @@
     });
 
     // @@@@ タブスライド
-    var pvs;
-    var tabLength = document.querySelectorAll(".mySwiper .swiper-slide").length;
+    const swiperTabs = document.querySelectorAll(".mySwiper .swiper-slide");
+    const hasSwiper =
+      typeof Swiper !== "undefined" &&
+      document.querySelector(".mySwiper") &&
+      document.querySelector(".mySwiper2") &&
+      swiperTabs.length > 0;
 
-    if (tabLength > 4) {
-      pvs = "4.5";
-    } else {
-      pvs = tabLength;
-    }
+    if (hasSwiper) {
+      var pvs;
+      var tabLength = swiperTabs.length;
 
-    var swiper = new Swiper(".mySwiper", {
-      slidesPerView: pvs,
-      watchSlidesProgress: true,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      on: {
-        init: () => {
-          const navLinks = document.querySelectorAll(".nav-drop ul li");
-          navLinks.forEach((link) => {
-            link.addEventListener("click", (event) => {
-              event.preventDefault();
-              const slideNumber = link.getAttribute("data-slide");
-              swiper2.slideTo(slideNumber - 1);
-            });
-          });
-          // moreボタン
+      if (tabLength > 4) {
+        pvs = "4.5";
+      } else {
+        pvs = tabLength;
+      }
+
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: pvs,
+        watchSlidesProgress: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
         },
-      },
-    });
-    var swiper2 = new Swiper(".mySwiper2", {
-      spaceBetween: 10,
-      autoHeight: true,
-      simulateTouch: false,
-      thumbs: {
-        swiper: swiper,
-      },
-    });
+        on: {
+          init: () => {
+            const navLinks = document.querySelectorAll(".nav-drop ul li");
+            navLinks.forEach((link) => {
+              link.addEventListener("click", (event) => {
+                event.preventDefault();
+                const slideNumber = link.getAttribute("data-slide");
+                swiper2.slideTo(slideNumber - 1);
+              });
+            });
+          },
+        },
+      });
+      var swiper2 = new Swiper(".mySwiper2", {
+        spaceBetween: 10,
+        autoHeight: true,
+        simulateTouch: false,
+        thumbs: {
+          swiper: swiper,
+        },
+      });
 
-    const num = 6;
-    const swiperWrap = document.querySelectorAll(".swiper-slide");
+      const num = 6;
+      const swiperWrap = document.querySelectorAll(".swiper-slide");
 
-    for (var i = 0; i < swiperWrap.length; i++) {
-      const swiperItemLists = swiperWrap[i].querySelectorAll(
-        ".swiper-slide ul li"
-      );
-      // listを一旦非表示
-      for (var e = num; e < swiperItemLists.length; e++) {
-        swiperItemLists[e].classList.add("is-hidden");
-      }
-    }
-    const swiperBtns = document.querySelectorAll(".load-more");
-    swiperBtns.forEach((swiperBtn, i) => {
-      const wrap = swiperBtn.parentElement.querySelector("ul");
-      if (wrap.querySelectorAll("li").length <= num) {
-        swiperBtn.style.display = "none";
-      }
-
-      swiperBtn.addEventListener("click", () => {
-        const hiddenItems = wrap.querySelectorAll("li.is-hidden");
-        for (var i = 0; i < num && i < hiddenItems.length; i++) {
-          hiddenItems[i].classList.remove("is-hidden");
+      for (var i = 0; i < swiperWrap.length; i++) {
+        const swiperItemLists = swiperWrap[i].querySelectorAll(
+          ".swiper-slide ul li"
+        );
+        for (var e = num; e < swiperItemLists.length; e++) {
+          swiperItemLists[e].classList.add("is-hidden");
         }
-        if (wrap.querySelectorAll("li.is-hidden").length === 0) {
+      }
+      const swiperBtns = document.querySelectorAll(".load-more");
+      swiperBtns.forEach((swiperBtn) => {
+        const wrap = swiperBtn.parentElement.querySelector("ul");
+        if (!wrap) {
+          return;
+        }
+        if (wrap.querySelectorAll("li").length <= num) {
           swiperBtn.style.display = "none";
         }
-      });
-    });
 
-    setTimeout(() => {
-      swiper2.update();
-    }, 450);
+        swiperBtn.addEventListener("click", () => {
+          const hiddenItems = wrap.querySelectorAll("li.is-hidden");
+          for (var i = 0; i < num && i < hiddenItems.length; i++) {
+            hiddenItems[i].classList.remove("is-hidden");
+          }
+          if (wrap.querySelectorAll("li.is-hidden").length === 0) {
+            swiperBtn.style.display = "none";
+          }
+        });
+      });
+
+      setTimeout(() => {
+        swiper2.update();
+      }, 450);
+    }
 
     // function initSlideMoreButton(slideIndex) {
     //   const currentSlide = swiper2.slides[slideIndex];

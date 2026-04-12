@@ -10,6 +10,7 @@ Use this guide when you need to:
 - update Japanese or English copy
 - add or edit news articles
 - understand how generated article pages work
+- understand how the resources hub is organized
 - keep JP and EN pages aligned
 - avoid breaking navigation, relative paths, or deployment
 
@@ -19,6 +20,8 @@ Main files and directories:
 
 - Japanese top page: `index.html`
 - English top page: `en/index.html`
+- Japanese resources hub: `resources/index.html`
+- English resources hub: `en/resources/index.html`
 - Generated Japanese article pages: `news/<slug>.html`
 - Generated English article pages: `en/news/<slug>.html`
 - Japanese article Markdown: `content/ja/news/<slug>.md`
@@ -122,6 +125,13 @@ Current behavior:
   - example: `../news/homepage-opened`
 - generated files still exist as `news/<slug>.html` and `en/news/<slug>.html`
 
+Resources hub paths:
+
+- JP resources hub from top page: `./resources/`
+- EN resources hub from top page: `./resources/`
+- JP resources hub file: `resources/index.html`
+- EN resources hub file: `en/resources/index.html`
+
 For article pages:
 
 - Japanese article home link: `../`
@@ -160,9 +170,20 @@ Each top-page section must keep:
 
 Do not casually rename these.
 
+### Current top-page structure
+
+The current top-page sections are:
+
+- `NEWS`
+- `ワールド概要 / World Overview`
+- `関連情報 / Resources`
+- `Contact`
+
+The former `Rules / Events / Groups` tab section is intentionally not present on the top page right now.
+
 ### Dropdown sections
 
-For `nav-drop` sections, the number of tab items and content slides must match:
+If a future page uses `nav-drop`, the number of tab items and content slides must match:
 
 - `.tab-wrapp`
 - `.mySwiper2 .swiper-wrapper`
@@ -174,6 +195,20 @@ The top-page `NEWS` list keeps this structure:
 - `<li class="news-item is-link" data-more="">`
 
 That structure is preserved because `script.js` relies on it for the existing "more" behavior.
+
+### Resources hub
+
+The resources hub is the main expansion point for future non-news information.
+
+Current hub pages:
+
+- `resources/index.html`
+- `en/resources/index.html`
+
+Current categories:
+
+- `Documentation`
+- `Links`
 
 ## Article Rendering Rules
 
@@ -237,6 +272,12 @@ npm run build
 2. If needed, update `generate-news.mjs`.
 3. Run `npm run build` locally to verify generated output.
 
+### Expand the resources area
+
+1. Update `resources/index.html` and `en/resources/index.html` when adding new hub categories.
+2. Add new linked pages under `resources/` and `en/resources/` as needed.
+3. Keep JP and EN structures parallel unless there is a clear reason not to.
+
 ## What To Avoid Breaking
 
 Avoid casual changes to:
@@ -264,9 +305,10 @@ After making changes, verify:
 As of the current repo state:
 
 - JP and EN top pages exist
+- JP and EN resources hub pages exist
 - article pages are generated from Markdown
 - top-page article links omit `.html`
 - home links avoid explicit `index.html`
 - GitHub Actions generates pages during deployment
-- `Rules / Events / Groups` is still placeholder content
+- `Resources` is now the preferred entry point for documentation and related links
 - `Contact` is still placeholder content
