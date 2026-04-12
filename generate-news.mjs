@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile, readdir } from "node:fs/promises";
+﻿import { mkdir, readFile, writeFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -16,8 +16,8 @@ const LANG_CONFIG = {
     markdownPrefix: "../content/ja/news",
     topArticlePrefix: "./news",
     assetBase: "../assets/",
-    homeLink: "../index.html",
-    headerHomeLink: "../index.html",
+    homeLink: "../",
+    headerHomeLink: "../",
     topAssetPrefix: "./assets/",
     topCtaLabel: "記事を見る",
   },
@@ -28,8 +28,8 @@ const LANG_CONFIG = {
     markdownPrefix: "../../content/en/news",
     topArticlePrefix: "../news",
     assetBase: "../../assets/",
-    homeLink: "../index.html",
-    headerHomeLink: "../index.html",
+    homeLink: "../",
+    headerHomeLink: "../",
     topAssetPrefix: "../assets/",
     topCtaLabel: "Read article",
   },
@@ -193,7 +193,7 @@ function buildTranslationMap(entries) {
 
 function renderNewsItem(entry, lang) {
   const { topArticlePrefix, topAssetPrefix, topCtaLabel } = LANG_CONFIG[lang];
-  const href = `${topArticlePrefix}/${entry.slug}.html`;
+  const href = `${topArticlePrefix}/${entry.slug}`;
 
   return [
     '            <li class="news-item is-link" data-more="">',
@@ -244,11 +244,11 @@ function renderArticlePage(entry, pair, template) {
     HOME_LINK: LANG_CONFIG[entry.lang].homeLink,
     HEADER_HOME_LINK: LANG_CONFIG[entry.lang].headerHomeLink,
     JP_LINK: isEnglish
-      ? `../../news/${pair.ja.slug}.html`
-      : `../news/${entry.slug}.html`,
+      ? `../../news/${pair.ja.slug}`
+      : `../news/${entry.slug}`,
     EN_LINK: isEnglish
-      ? `./${entry.slug}.html`
-      : `../en/news/${counterpart.slug}.html`,
+      ? `./${entry.slug}`
+      : `../en/news/${counterpart.slug}`,
     FALLBACK_MARKDOWN: escapeScriptText(entry.body),
   };
 
@@ -310,3 +310,4 @@ main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
+
