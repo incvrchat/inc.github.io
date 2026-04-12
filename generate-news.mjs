@@ -1,4 +1,4 @@
-import { readFile, writeFile, readdir } from "node:fs/promises";
+import { mkdir, readFile, writeFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -26,7 +26,7 @@ const LANG_CONFIG = {
     topPagePath: path.join(__dirname, "en", "index.html"),
     articleDir: path.join(__dirname, "en", "news"),
     markdownPrefix: "../../content/en/news",
-    topArticlePrefix: "./news",
+    topArticlePrefix: "../news",
     assetBase: "../../assets/",
     homeLink: "../index.html",
     headerHomeLink: "../index.html",
@@ -112,7 +112,15 @@ function parseFrontMatter(rawMarkdown, filePath) {
 
 async function loadEntriesForLanguage(lang) {
   const { contentDir } = LANG_CONFIG[lang];
-  const files = (await readdir(contentDir)).filter((file) => file.endsWith(".md"));
+  let files = [];
+  try {
+    files = (await readdir(contentDir)).filter((file) => file.endsWith(".md"));
+  } catch (error) {
+    if (error && error.code === "ENOENT") {
+      return [];
+    }
+    throw error;
+  }
   const entries = [];
 
   for (const file of files) {
@@ -167,6 +175,10 @@ function buildTranslationMap(entries) {
     const current = byKey.get(entry.translationKey);
     current[entry.lang] = entry;
   });
+
+  if (byKey.size === 0) {
+    return byKey;
+  }
 
   byKey.forEach((pair, translationKey) => {
     if (!pair.ja || !pair.en) {
@@ -255,7 +267,19 @@ async function writeArticlePages(entries, translationMap) {
       `${entry.slug}.html`
     );
     const html = renderArticlePage(entry, pair, template);
+    await mkdir(path.dirname(outputPath), { recursive: true });
     await writeFile(outputPath, html, "utf8");
+  }
+}
+
+async function ensureArticleDirectories() {
+  const dirs = new Set();
+  Object.values(LANG_CONFIG).forEach((config) => {
+    dirs.add(config.articleDir);
+  });
+
+  for (const dir of dirs) {
+    await mkdir(dir, { recursive: true });
   }
 }
 
@@ -270,6 +294,8 @@ async function main() {
   }
 
   const translationMap = buildTranslationMap(allEntries);
+
+  await ensureArticleDirectories();
 
   for (const lang of Object.keys(LANG_CONFIG)) {
     const languageEntries = sortEntries(
