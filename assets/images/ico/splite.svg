@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0">
+<symbol id="ico-dropdown" width="11" height="6" viewBox="0 0 11 6" >
+<g clip-path="url(#clip0_448_5118)">
+<path d="M9.5625 0.875L5.5 4.9375L1.4375 0.875" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath>
+<rect width="11" height="6"/>
+</clipPath>
+</defs>
+</symbol>
+
+<symbol id="ico-link" width="14" height="12" viewBox="0 0 14 12" >
+<g clip-path="url(#clip0_448_5106)">
+<path d="M10.5737 8.5H13.5V0.5H3.5V3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.5 3.5H0.5V11.5H10.5V3.5Z" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath>
+<rect width="14" height="12"/>
+</clipPath>
+</defs>
+</symbol>
+
+<symbol id="ico-mail" width="14" height="11" viewBox="0 0 14 11" >
+<path d="M1 1V0.25C0.585786 0.25 0.25 0.585786 0.25 1L1 1ZM13 1H13.75C13.75 0.585786 13.4142 0.25 13 0.25V1ZM13 10V10.75C13.4142 10.75 13.75 10.4142 13.75 10H13ZM1 10H0.25C0.25 10.4142 0.585786 10.75 1 10.75L1 10ZM7 5.5L6.55247 6.10185C6.81813 6.29938 7.18187 6.29938 7.44753 6.10185L7 5.5ZM1.59753 0.548153C1.26514 0.300991 0.795316 0.370082 0.548153 0.702473C0.300991 1.03486 0.370082 1.50468 0.702473 1.75185L1.59753 0.548153ZM1 1.75H13V0.25H1V1.75ZM12.25 1V10H13.75V1H12.25ZM13 9.25H1V10.75H13V9.25ZM1.75 10V1H0.25V10H1.75ZM12.4025 0.548153L6.55247 4.89815L7.44753 6.10185L13.2975 1.75185L12.4025 0.548153ZM7.44753 4.89815L1.59753 0.548153L0.702473 1.75185L6.55247 6.10185L7.44753 4.89815Z"/>
+</symbol>
+
+<symbol id="ico-more" width="13" height="3" viewBox="0 0 13 3" >
+<circle cx="1.5" cy="1.5" r="1.5"/>
+<circle cx="6.5" cy="1.5" r="1.5"/>
+<circle cx="11.5" cy="1.5" r="1.5"/>
+</symbol>
+
+</svg>
