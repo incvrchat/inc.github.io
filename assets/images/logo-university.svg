@@ -4,9 +4,13 @@
   <defs>
     <style>
       .st0 {
-        fill: #636a70;
+        fill: url(#logoGradient);
       }
     </style>
+    <linearGradient id="logoGradient" x1="0" y1="19" x2="123" y2="19" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#636a70"/>
+      <stop offset="1" stop-color="#406ab4"/>
+    </linearGradient>
   </defs>
   <g id="blender_frame.2">
     <g id="blender_object.Plane.026.2.uuid_0x0">
