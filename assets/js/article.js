@@ -1,6 +1,14 @@
 (() => {
   "use strict";
 
+  function escapeAttribute(text) {
+    return String(text)
+      .replace(/&/g, "&amp;")
+      .replace(/"/g, "&quot;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
   function escapeHtml(text) {
     return text
       .replace(/&/g, "&amp;")
@@ -12,6 +20,13 @@
 
   function renderInline(text) {
     let html = escapeHtml(text);
+    html = html.replace(
+      /!\[([^\]]*)\]\(([^)]+)\)/g,
+      (_, alt, src) =>
+        `<img src="${escapeAttribute(src)}" alt="${escapeAttribute(
+          alt
+        )}" loading="lazy" />`
+    );
     html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
     html = html.replace(
       /\[([^\]]+)\]\(([^)]+)\)/g,
@@ -134,6 +149,12 @@
   function getFallbackMarkdown() {
     const fallback = document.getElementById("article-markdown-fallback");
     return fallback ? fallback.textContent || "" : "";
+  }
+
+  function stripFrontMatter(markdown) {
+    const normalized = markdown.replace(/\r\n?/g, "\n");
+    const match = normalized.match(/^---\n[\s\S]*?\n---\n?([\s\S]*)$/);
+    return match ? match[1].trim() : normalized.trim();
   }
 
   function buildMenu(headings, navRoot, homeLink, homeLabel) {
@@ -356,7 +377,7 @@
       return;
     }
 
-    articleRoot.innerHTML = renderMarkdown(markdown);
+    articleRoot.innerHTML = renderMarkdown(stripFrontMatter(markdown));
 
     const headings = assignHeadingIds(articleRoot);
     const trackedItems = buildMenu(headings, navRoot, homeLink, homeLabel);

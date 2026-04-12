@@ -1,0 +1,8 @@
+{
+  "name": "inc-github-io",
+  "private": true,
+  "scripts": {
+    "generate:news": "node generate-news.mjs",
+    "build": "npm run generate:news"
+  }
+}
