@@ -2,6 +2,8 @@
   "use strict";
 
   document.addEventListener("DOMContentLoaded", () => {
+    const assetBase = document.body.dataset.assetBase || "./assets/";
+
     // @@@ 大学ロゴを違う要素に複製する
     const targetLogo = document.querySelector(".logo-university img");
     const targetLogoPcImg = document.querySelector(".logo-university-pc img");
@@ -33,8 +35,7 @@
           dropDiv.appendChild(link);
 
           const dropdownImg = document.createElement("div");
-          dropdownImg.innerHTML =
-            '<img src="./assets/images/ico/no-farames/ico-dropdown.svg">';
+          dropdownImg.innerHTML = `<img src="${assetBase}images/ico/no-farames/ico-dropdown.svg">`;
 
           const ul = document.createElement("ul");
 
@@ -260,8 +261,12 @@
     var navLinks = document.querySelectorAll("#g-nav a");
     navLinks.forEach(function (link) {
       link.addEventListener("click", function (event) {
-        event.preventDefault();
         var elmHash = this.getAttribute("href");
+        if (!elmHash || !elmHash.startsWith("#")) {
+          return;
+        }
+
+        event.preventDefault();
         var header = document.getElementById("header");
         var headerH = header.offsetHeight;
         var pos = Math.round(
@@ -374,8 +379,12 @@
     }
     const swiperBtns = document.querySelectorAll(".load-more");
     swiperBtns.forEach((swiperBtn, i) => {
+      const wrap = swiperBtn.parentElement.querySelector("ul");
+      if (wrap.querySelectorAll("li").length <= num) {
+        swiperBtn.style.display = "none";
+      }
+
       swiperBtn.addEventListener("click", () => {
-        const wrap = swiperBtn.parentElement.querySelector("ul");
         const hiddenItems = wrap.querySelectorAll("li.is-hidden");
         for (var i = 0; i < num && i < hiddenItems.length; i++) {
           hiddenItems[i].classList.remove("is-hidden");
@@ -461,11 +470,22 @@
     // @@@@ もっと見るボタン
     function setupMoreButton(sectionSelector, moreNum) {
       var section = document.querySelector(sectionSelector);
+      if (!section) {
+        return;
+      }
+
       var listItems = section.querySelectorAll("[data-more]");
       var listBtn = section.querySelector(".more-btn");
+      if (!listBtn) {
+        return;
+      }
 
       for (var i = moreNum; i < listItems.length; i++) {
         listItems[i].classList.add("is-hidden");
+      }
+
+      if (listItems.length <= moreNum) {
+        listBtn.style.display = "none";
       }
 
       listBtn.addEventListener("click", function () {
@@ -483,12 +503,6 @@
         }
       });
 
-      document.addEventListener("DOMContentLoaded", function () {
-        var list = section.querySelectorAll(".list li").length;
-        if (list < moreNum) {
-          listBtn.classList.add("is-btn-hidden");
-        }
-      });
     }
     setupMoreButton("#news", 3);
     setupMoreButton("#member", 2);
@@ -498,10 +512,12 @@
     const tagText = document.getElementById("tagText");
     const message = document.getElementById("message");
 
-    copyButton.addEventListener("click", () => {
-      const tagValue = tagText.value;
-      copyToClipboard(tagValue);
-    });
+    if (copyButton && tagText && message) {
+      copyButton.addEventListener("click", () => {
+        const tagValue = tagText.value;
+        copyToClipboard(tagValue);
+      });
+    }
 
     async function copyToClipboard(tagValue) {
       try {
