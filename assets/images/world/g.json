@@ -4,62 +4,72 @@
     {
       "title": "1",
       "caption": "M\r\n0.836",
-      "aspect": 0.818,
-      "size": "M"
+      "aspect": 1.247,
+      "size": "M",
+      "split": false
     },
     {
       "title": "2",
       "caption": "L\r\n0.801",
-      "aspect": 0.801,
-      "size": "L"
+      "aspect": 1.381,
+      "size": "L",
+      "split": false
     },
     {
       "title": "3",
       "caption": "M\r\n0.991",
-      "aspect": 0.747,
-      "size": "M"
+      "aspect": 0.818,
+      "size": "M",
+      "split": false
     },
     {
       "title": "4",
       "caption": "LL\r\n0.994",
-      "aspect": 0.75,
-      "size": "LL"
+      "aspect": 1.188,
+      "size": "LL",
+      "split": false
     },
     {
       "title": "5",
       "caption": "S\r\n1.333",
-      "aspect": 1.0,
-      "size": "S"
+      "aspect": 0.836,
+      "size": "S",
+      "split": false
     },
     {
       "title": "6",
       "caption": "M\r\n1.007",
-      "aspect": 1.534,
-      "size": "M"
+      "aspect": 0.8,
+      "size": "M",
+      "split": false
     },
     {
       "title": "",
       "caption": "M",
-      "aspect": 0.99,
-      "size": "M"
+      "aspect": 0.791,
+      "size": "M",
+      "split": false
     },
     {
       "title": "",
       "caption": "M",
-      "aspect": 0.806,
-      "size": "M"
+      "aspect": 1.77,
+      "size": "M",
+      "split": false
     },
     {
       "title": "",
       "caption": "M",
-      "aspect": 1.0,
-      "size": "M"
+      "aspect": 0.668,
+      "size": "M",
+      "split": false
     },
     {
       "title": "",
       "caption": "M",
-      "aspect": 1.0,
-      "size": "M"
+      "aspect": 1.734,
+      "size": "M",
+      "split": false
     }
   ]
 }
