@@ -1,73 +1,46 @@
 {
-  "count": 10,
+  "count": 6,
+  "flyer": true,
   "artworks": [
     {
       "title": "1",
       "caption": "M\r\n0.836",
-      "aspect": 1.247,
+      "aspect": 0.836,
       "size": "M",
       "split": false
     },
     {
       "title": "2",
       "caption": "L\r\n0.801",
-      "aspect": 1.381,
+      "aspect": 1.333,
       "size": "L",
       "split": false
     },
     {
       "title": "3",
       "caption": "M\r\n0.991",
-      "aspect": 0.818,
+      "aspect": 0.754,
       "size": "M",
       "split": false
     },
     {
       "title": "4",
       "caption": "LL\r\n0.994",
-      "aspect": 1.188,
+      "aspect": 1.534,
       "size": "LL",
       "split": false
     },
     {
       "title": "5",
       "caption": "S\r\n1.333",
-      "aspect": 0.836,
+      "aspect": 1.905,
       "size": "S",
       "split": false
     },
     {
       "title": "6",
       "caption": "M\r\n1.007",
-      "aspect": 0.8,
-      "size": "M",
-      "split": false
-    },
-    {
-      "title": "",
-      "caption": "M",
-      "aspect": 0.791,
-      "size": "M",
-      "split": false
-    },
-    {
-      "title": "",
-      "caption": "M",
-      "aspect": 1.77,
-      "size": "M",
-      "split": false
-    },
-    {
-      "title": "",
-      "caption": "M",
-      "aspect": 0.668,
-      "size": "M",
-      "split": false
-    },
-    {
-      "title": "",
-      "caption": "M",
-      "aspect": 1.734,
+      "aspect": 2.0,
       "size": "M",
       "split": false
     }
