@@ -3,37 +3,37 @@
   "artworks": [
     {
       "title": "1",
-      "caption": "作品の説明文がここに入ります。",
+      "caption": "M\r\n0.836",
       "aspect": 0.836,
       "size": "M"
     },
     {
       "title": "2",
-      "caption": "縦長作品の例。",
+      "caption": "L\r\n0.801",
       "aspect": 0.801,
       "size": "L"
     },
     {
       "title": "3",
-      "caption": "正方形に近い作品。",
+      "caption": "M\r\n0.991",
       "aspect": 0.991,
       "size": "M"
     },
     {
       "title": "4",
-      "caption": "横長ワイド作品。",
+      "caption": "LL\r\n0.994",
       "aspect": 0.994,
       "size": "LL"
     },
     {
       "title": "5",
-      "caption": "小サイズの作品。",
+      "caption": "S\r\n1.333",
       "aspect": 1.333,
       "size": "S"
     },
     {
       "title": "6",
-      "caption": "eeeee",
+      "caption": "M\r\n1.007",
       "aspect": 1.007,
       "size": "M"
     }
