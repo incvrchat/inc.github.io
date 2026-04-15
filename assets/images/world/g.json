@@ -1,64 +1,40 @@
 {
-  "count": 10,
+  "count": 6,
   "artworks": [
     {
-      "title": "a",
+      "title": "1",
       "caption": "作品の説明文がここに入ります。",
-      "aspect": 1.004,
+      "aspect": 0.836,
       "size": "M"
     },
     {
-      "title": "作品タイトル 02",
+      "title": "2",
       "caption": "縦長作品の例。",
-      "aspect": 1.557,
+      "aspect": 0.801,
       "size": "L"
     },
     {
-      "title": "作品タイトル 03",
+      "title": "3",
       "caption": "正方形に近い作品。",
-      "aspect": 0.75,
+      "aspect": 0.991,
       "size": "M"
     },
     {
-      "title": "作品タイトル 04",
+      "title": "4",
       "caption": "横長ワイド作品。",
-      "aspect": 1.015,
+      "aspect": 0.994,
       "size": "LL"
     },
     {
-      "title": "作品タイトル 05",
+      "title": "5",
       "caption": "小サイズの作品。",
-      "aspect": 1.145,
+      "aspect": 1.333,
       "size": "S"
     },
     {
-      "title": "k",
+      "title": "6",
       "caption": "eeeee",
-      "aspect": 1.333,
-      "size": "M"
-    },
-    {
-      "title": "kamen",
-      "caption": "aaaaaaaaaa",
-      "aspect": 1.36,
-      "size": "M"
-    },
-    {
-      "title": "garasu",
-      "caption": "aaaa",
-      "aspect": 1.333,
-      "size": "M"
-    },
-    {
-      "title": "bantage",
-      "caption": "aaa",
-      "aspect": 1.005,
-      "size": "M"
-    },
-    {
-      "title": "switch",
-      "caption": "aaaaa",
-      "aspect": 0.55,
+      "aspect": 1.007,
       "size": "M"
     }
   ]
