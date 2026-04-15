@@ -1,0 +1,47 @@
+{
+  "count": 7,
+  "artworks": [
+    {
+      "title": "作品タイトル 01",
+      "caption": "作品の説明文がここに入ります。",
+      "aspect": 1.333,
+      "size": "M"
+    },
+    {
+      "title": "作品タイトル 02",
+      "caption": "縦長作品の例。",
+      "aspect": 0.75,
+      "size": "L"
+    },
+    {
+      "title": "作品タイトル 03",
+      "caption": "正方形に近い作品。",
+      "aspect": 1.0,
+      "size": "M"
+    },
+    {
+      "title": "作品タイトル 04",
+      "caption": "横長ワイド作品。",
+      "aspect": 1.778,
+      "size": "LL"
+    },
+    {
+      "title": "作品タイトル 05",
+      "caption": "小サイズの作品。",
+      "aspect": 1.0,
+      "size": "S"
+    },
+    {
+      "title": "作品タイトル 06",
+      "caption": "説明文その6。",
+      "aspect": 1.5,
+      "size": "M"
+    },
+    {
+      "title": "作品タイトル 07",
+      "caption": "説明文その7。",
+      "aspect": 1.25,
+      "size": "L"
+    }
+  ]
+}
