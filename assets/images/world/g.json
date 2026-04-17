@@ -33,11 +33,11 @@
     {
       "title": "4",
       "caption": "4k",
-      "aspect": 1.0,
+      "aspect": 1.359,
       "size": "LL",
-      "split": true,
-      "w": 4096,
-      "h": 4096
+      "split": false,
+      "w": 500,
+      "h": 368
     },
     {
       "title": "5",
