@@ -1,7 +1,7 @@
 {
   "count": 5,
   "active": true,
-  "flyer": false,
+  "flyer": true,
   "artworks": [
     {
       "title": "1",
