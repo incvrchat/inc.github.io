@@ -1,70 +1,52 @@
 {
-  "count": 9,
+  "count": 5,
   "active": true,
-  "flyer": true,
+  "flyer": false,
   "artworks": [
     {
       "title": "1",
-      "caption": "M\r\n0.836",
-      "aspect": 1.333,
+      "caption": "2k",
+      "aspect": 0.818,
       "size": "M",
-      "split": false
+      "split": false,
+      "w": 640,
+      "h": 782
     },
     {
       "title": "2",
-      "caption": "L\r\n0.801",
-      "aspect": 1.5,
+      "caption": "4k",
+      "aspect": 1.0,
       "size": "L",
-      "split": false
+      "split": true,
+      "w": 2500,
+      "h": 2500
     },
     {
       "title": "3",
-      "caption": "",
-      "aspect": 0.85,
+      "caption": "4k\r\n",
+      "aspect": 1.0,
       "size": "M",
-      "split": false
+      "split": false,
+      "w": 224,
+      "h": 224
     },
     {
       "title": "4",
-      "caption": "",
-      "aspect": 0.925,
+      "caption": "4k",
+      "aspect": 1.0,
       "size": "LL",
-      "split": false
+      "split": true,
+      "w": 4096,
+      "h": 4096
     },
     {
       "title": "5",
-      "caption": "",
-      "aspect": 1.333,
-      "size": "S",
-      "split": false
-    },
-    {
-      "title": "6",
-      "caption": "",
-      "aspect": 1.319,
-      "size": "M",
-      "split": false
-    },
-    {
-      "title": "7",
-      "caption": "",
+      "caption": "1k",
       "aspect": 1.0,
-      "size": "M",
-      "split": false
-    },
-    {
-      "title": "8",
-      "caption": "",
-      "aspect": 1.534,
-      "size": "M",
-      "split": false
-    },
-    {
-      "title": "9",
-      "caption": "",
-      "aspect": 1.503,
-      "size": "M",
-      "split": false
+      "size": "S",
+      "split": false,
+      "w": 1024,
+      "h": 1024
     }
   ]
 }
