@@ -22,12 +22,16 @@ Main files and directories:
 - English top page: `en/index.html`
 - Japanese resources hub: `resources/index.html`
 - English resources hub: `en/resources/index.html`
-- Generated Japanese article pages: `news/<slug>.html`
-- Generated English article pages: `en/news/<slug>.html`
-- Japanese article Markdown: `content/ja/news/<slug>.md`
-- English article Markdown: `content/en/news/<slug>.md`
+- Generated Japanese news article pages: `news/<slug>.html`
+- Generated English news article pages: `en/news/<slug>.html`
+- Generated Japanese event pages: `events/<slug>.html`
+- Generated English event pages: `en/events/<slug>.html`
+- Japanese news Markdown: `content/ja/news/<slug>.md`
+- English news Markdown: `content/en/news/<slug>.md`
+- Japanese event Markdown: `content/ja/events/<slug>.md`
+- English event Markdown: `content/en/events/<slug>.md`
 - Shared generated article template: `article-page.template.html`
-- News generator: `generate-news.mjs`
+- News/event generator: `generate-news.mjs`
 - GitHub Pages workflow: `.github/workflows/static.yml`
 - Shared top-page script: `assets/js/script.js`
 - Shared article-page script: `assets/js/article.js`
@@ -55,13 +59,15 @@ Important:
 
 ## Authoring Model
 
-News content is authored in Markdown with front matter.
+News and event content is authored in Markdown with front matter.
 Generated files should not be manually edited in normal operation.
 
 Edit these:
 
 - `content/ja/news/<slug>.md`
 - `content/en/news/<slug>.md`
+- `content/ja/events/<slug>.md`
+- `content/en/events/<slug>.md`
 - `article-page.template.html` only if you want to change generated article layout
 - `generate-news.mjs` only if you want to change generation logic
 
@@ -69,10 +75,14 @@ Do not normally edit these by hand:
 
 - `news/<slug>.html`
 - `en/news/<slug>.html`
-- generated `NEWS` list items in `index.html`
-- generated `NEWS` list items in `en/index.html`
+- `events/<slug>.html`
+- `en/events/<slug>.html`
+- generated list items in `index.html`
+- generated list items in `en/index.html`
 
 ## Front Matter
+
+### News front matter
 
 Each news Markdown file should start with front matter like this:
 
@@ -89,7 +99,28 @@ summary: Our website is now live. We will keep updating this page with the lates
 ---
 ```
 
-Required fields:
+### Event front matter
+
+Event Markdown files use the same required fields, plus an optional `image` field:
+
+```yaml
+---
+title: Opening Event
+date: 2026-04-12
+dateLabel: 2026.04.12
+description: Details for the opening event.
+slug: opening-event
+lang: en
+translationKey: opening-event
+summary: We are planning an opening event to celebrate the launch of the INC world.
+image: /assets/images/world/p01.png
+---
+```
+
+The `image` field is optional. If present, it is shown as the card image on the top page.
+Use root-relative paths starting with `/` (e.g., `/assets/images/world/p01.png`) so the path works from both JP and EN top pages.
+
+Required fields (both news and events):
 
 - `title`
 - `date`
@@ -100,16 +131,21 @@ Required fields:
 - `translationKey`
 - `summary`
 
+Optional fields (events only):
+
+- `image`: root-relative path to the card image
+
 Field meaning:
 
 - `title`: article page title
 - `date`: sorting date
-- `dateLabel`: visible date string for the news list
+- `dateLabel`: visible date string for the list
 - `description`: meta description for the generated page
 - `slug`: generated article file name and public article path
 - `lang`: `ja` or `en`
 - `translationKey`: ties JP and EN versions together
-- `summary`: text shown in the top-page `NEWS` list
+- `summary`: text shown in the top-page list card
+- `image`: (events only) card image shown on the top page
 
 ## URL Rules
 

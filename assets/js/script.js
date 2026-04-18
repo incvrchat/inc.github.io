@@ -520,6 +520,7 @@
 
     }
     setupMoreButton("#news", 3);
+    setupMoreButton("#events", 4);
     setupMoreButton("#member", 2);
 
     // @@@@@ メールのコピー

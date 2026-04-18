@@ -1551,8 +1551,8 @@ footer {
     margin-top: 30px
   }
 
-  */.contact-wrapp {
-    gap: 750pt
+  .contact-wrapp {
+    gap: 30px
   }
 
   .contact-text-wrapp {
@@ -1593,6 +1593,79 @@ footer {
 
   .footer-copyright {
     margin-top: 18px
+  }
+
+  .world-group-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px
+  }
+
+  .info-card {
+    padding: 32px
+  }
+
+  .info-card-heading {
+    font-size: 24px
+  }
+
+  .vrc-link-btn:hover {
+    background-color: var(--color-key-2)
+  }
+
+  .vrc-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.4)
+  }
+
+  .event-card:hover {
+    border-color: #aab4bc
+  }
+
+  .event-card:hover .event-card-inner {
+    opacity: 0.85
+  }
+
+  .vrc-card-name {
+    font-size: 18px;
+    width: auto;
+    margin-right: 0
+  }
+
+  .vrc-card-icon {
+    width: 72px;
+    min-width: 72px;
+    height: 72px;
+    margin-top: -40px
+  }
+
+  .vrc-card-icon img {
+    width: 100%;
+    height: 100%
+  }
+
+  .event-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px
+  }
+
+  .event-card-img {
+    width: 140px
+  }
+
+  .event-title {
+    width: auto;
+    margin-right: 0;
+    font-size: 15px
+  }
+
+  .footer-nav {
+    margin-bottom: 20px
+  }
+
+  .footer-nav-list {
+    gap: 32px;
+    font-size: 15px
   }
 
   #academic {
@@ -1649,4 +1722,253 @@ footer {
   .profile-history-wrapp {
     width: 40.972vw
   }
+}
+
+/* ---- World / Group section ---- */
+.world-group-grid {
+  display: grid;
+  gap: 24px
+}
+
+.info-card {
+  background-color: var(--color-white);
+  border: 1px solid #d4dbe1;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px
+}
+
+.info-card-heading {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--color-key)
+}
+
+.info-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2
+}
+
+.vrc-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  background-color: var(--color-key);
+  color: var(--color-white);
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 4px;
+  align-self: flex-start;
+  transition: .2s
+}
+
+/* ---- Events section ---- */
+.event-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px
+}
+
+.event-card {
+  border: 1px solid #d4dbe1;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--color-white)
+}
+
+.event-card-inner {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%
+}
+
+.event-card-img {
+  flex-shrink: 0;
+  width: 120px;
+  overflow: hidden
+}
+
+.event-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover
+}
+
+.event-card-body {
+  flex: 1;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0
+}
+
+.event-date {
+  font-size: 11px;
+  color: var(--color-gray);
+  font-weight: 500
+}
+
+.event-title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 0
+}
+
+.event-desc {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-gray)
+}
+
+/* ---- VRChat-style info cards ---- */
+.vrc-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #1c1c28;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.28)
+}
+
+.vrc-card-banner-wrap {
+  position: relative;
+  flex-shrink: 0
+}
+
+.vrc-card-banner {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5/2;
+  object-fit: cover
+}
+
+.vrc-card-label {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  background: rgba(0,0,0,0.52);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  border-radius: 4px
+}
+
+.vrc-card-body {
+  flex: 1;
+  padding: 0 18px 20px
+}
+
+.vrc-card-body--no-icon {
+  padding-top: 16px
+}
+
+.vrc-card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 6px;
+  margin-bottom: 10px
+}
+
+.vrc-card-icon {
+  position: relative;
+  z-index: 1;
+  width: 64px;
+  min-width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-top: -36px;
+  border: 3px solid #1c1c28;
+  background-color: #e8e8e8
+}
+
+.vrc-card-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center
+}
+
+.vrc-card-group-id {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  margin-top: 10px;
+  text-align: right;
+  letter-spacing: 0.04em
+}
+
+.vrc-card-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.35;
+  margin-bottom: 8px;
+  width: auto;
+  margin-right: 0
+}
+
+.vrc-card-top .vrc-card-name {
+  margin-bottom: 0
+}
+
+.vrc-card-desc {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.8
+}
+
+/* ---- Footer nav ---- */
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px
+}
+
+.footer-nav-list {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 600
+}
+
+.footer-nav-list a {
+  color: var(--color-link)
+}
+
+.footer-license {
+  text-align: center;
+  font-size: 11px;
+  color: var(--color-gray);
+  margin-top: 8px;
+  font-weight: 500
 }
