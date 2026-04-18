@@ -20,7 +20,7 @@ const NEWS_LANG_CONFIG = {
     homeLink: "../",
     headerHomeLink: "../",
     topAssetPrefix: "./assets/",
-    topCtaLabel: "險倅ｺ九ｒ隕九ｋ",
+    topCtaLabel: "記事を読む",
   },
   en: {
     contentDir: path.join(__dirname, "content", "en", "news"),
@@ -47,7 +47,7 @@ const EVENT_LANG_CONFIG = {
     homeLink: "../",
     headerHomeLink: "../",
     topAssetPrefix: "./assets/",
-    topCtaLabel: "隧ｳ邏ｰ繧定ｦ九ｋ",
+    topCtaLabel: "詳細を見る",
   },
   en: {
     contentDir: path.join(__dirname, "content", "en", "events"),
@@ -74,7 +74,7 @@ const DOC_LANG_CONFIG = {
     homeLink: "../",
     headerHomeLink: "../",
     topAssetPrefix: "../assets/",
-    topCtaLabel: "隧ｳ邏ｰ繧定ｦ九ｋ",
+    topCtaLabel: "詳細を見る",
   },
   en: {
     contentDir: path.join(__dirname, "content", "en", "docs"),
