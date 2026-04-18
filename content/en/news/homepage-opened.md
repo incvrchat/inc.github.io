@@ -2,7 +2,7 @@
 title: Website Launched
 date: 2026-04-12
 dateLabel: 2026.04.12
-description: Announcement for the launch of the INC (Intermedia Network Center) website.
+description: Our website is now live. We will keep updating this page with the latest information about INC.
 slug: homepage-opened
 lang: en
 translationKey: homepage-opened
