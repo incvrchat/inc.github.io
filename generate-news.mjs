@@ -298,23 +298,22 @@ function renderNewsItem(entry, lang) {
   ].join("\n");
 }
 
+const DEFAULT_THUMB_REL = "images/ico/grouplink_icon.png";
+
 function renderEventItem(entry, lang) {
   const { topArticlePrefix, topAssetPrefix, topCtaLabel } = EVENT_LANG_CONFIG[lang];
   const href = `${topArticlePrefix}/${entry.slug}`;
+  const imageSrc = entry.image
+    ? pageAssetPath(entry.image, EVENT_LANG_CONFIG[lang])
+    : `${topAssetPrefix}${DEFAULT_THUMB_REL}`;
 
   const lines = [
     '            <li class="event-card" data-more="">',
     `              <a href="${href}" class="event-card-inner">`,
+    '                <div class="event-card-img">',
+    `                  <img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(entry.title)}" />`,
+    "                </div>",
   ];
-
-  if (entry.image) {
-    const imageSrc = pageAssetPath(entry.image, EVENT_LANG_CONFIG[lang]);
-    lines.push(
-      '                <div class="event-card-img">',
-      `                  <img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(entry.title)}" />`,
-      "                </div>"
-    );
-  }
 
   lines.push(
     '                <div class="event-card-body">',
@@ -330,20 +329,18 @@ function renderEventItem(entry, lang) {
 }
 
 function renderDocItem(entry, lang) {
-  const { topArticlePrefix, topCtaLabel } = DOC_LANG_CONFIG[lang];
+  const { topArticlePrefix, topAssetPrefix, topCtaLabel } = DOC_LANG_CONFIG[lang];
   const href = `${topArticlePrefix}/${entry.slug}`;
-  const imageSrc = pageAssetPath(entry.image, DOC_LANG_CONFIG[lang]);
+  const imageSrc = entry.image
+    ? pageAssetPath(entry.image, DOC_LANG_CONFIG[lang])
+    : `${topAssetPrefix}${DEFAULT_THUMB_REL}`;
   const lines = [
     '            <li class="event-card resources-doc-card" data-more="">',
     `              <a href="${href}" class="event-card-inner">`,
+    '                <div class="event-card-img">',
+    `                  <img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(entry.title)}" loading="lazy" />`,
+    "                </div>",
   ];
-  if (entry.image) {
-    lines.push(
-      '                <div class="event-card-img">',
-      `                  <img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(entry.title)}" loading="lazy" />`,
-      "                </div>"
-    );
-  }
   lines.push(
     '                <div class="event-card-body">',
     `                  <div class="event-date">${escapeHtml(entry.dateLabel)}</div>`,
