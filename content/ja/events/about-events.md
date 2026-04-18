@@ -2,12 +2,12 @@
 title: 公演・イベント情報について
 date: 2026-04-18
 dateLabel: 2026.04.18
-description: INCで開催される公演・イベントの概要と、このセクションの使い方について説明します。
+description: INCでは音楽・トーク・展示などの公演・イベントを随時開催予定です。このページでは開催予定のイベントをまとめて確認できます。
 slug: about-events
 lang: ja
 translationKey: about-events
 summary: INCでは音楽・トーク・展示などの公演・イベントを随時開催予定です。このページでは開催予定のイベントをまとめて確認できます。
-image: /assets/images/groupheader.png
+image: /assets/images/content/events/about-events/file_80459102-85b0-408b-864d-9c9d5a8c6470_blob-2.png
 ---
 
 ## 公演・イベント情報セクションについて
@@ -15,6 +15,7 @@ image: /assets/images/groupheader.png
 INC（Intermedia Network Center）では、VRChat 上での公演・イベントを随時開催予定です。
 
 このセクションでは、開催が決まったイベントを順次掲載していきます。
+
 
 ## 開催予定のイベント種別
 

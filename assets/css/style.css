@@ -668,6 +668,20 @@ h3 {
   line-height: 2
 }
 
+.resources-category-group {
+  margin-top: 28px
+}
+
+.resources-category-group h3 {
+  width: auto;
+  margin: 0 0 14px;
+  font-size: 20px
+}
+
+.resources-doc-card {
+  margin-bottom: 16px
+}
+
 .resources-card-link {
   display: inline-flex;
   align-items: center;

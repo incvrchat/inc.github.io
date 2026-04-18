@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile, readdir } from "node:fs/promises";
+﻿import { mkdir, readFile, writeFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -7,6 +7,7 @@ const __dirname = path.dirname(__filename);
 
 const SITE_NAME = "INC";
 const TEMPLATE_PATH = path.join(__dirname, "article-page.template.html");
+const RESOURCE_CATEGORIES_PATH = path.join(__dirname, "assets", "json", "resource-categories.json");
 
 const NEWS_LANG_CONFIG = {
   ja: {
@@ -19,7 +20,7 @@ const NEWS_LANG_CONFIG = {
     homeLink: "../",
     headerHomeLink: "../",
     topAssetPrefix: "./assets/",
-    topCtaLabel: "記事を見る",
+    topCtaLabel: "險倅ｺ九ｒ隕九ｋ",
   },
   en: {
     contentDir: path.join(__dirname, "content", "en", "news"),
@@ -46,7 +47,7 @@ const EVENT_LANG_CONFIG = {
     homeLink: "../",
     headerHomeLink: "../",
     topAssetPrefix: "./assets/",
-    topCtaLabel: "詳細を見る",
+    topCtaLabel: "隧ｳ邏ｰ繧定ｦ九ｋ",
   },
   en: {
     contentDir: path.join(__dirname, "content", "en", "events"),
@@ -73,7 +74,7 @@ const DOC_LANG_CONFIG = {
     homeLink: "../",
     headerHomeLink: "../",
     topAssetPrefix: "../assets/",
-    topCtaLabel: "詳細を見る",
+    topCtaLabel: "隧ｳ邏ｰ繧定ｦ九ｋ",
   },
   en: {
     contentDir: path.join(__dirname, "content", "en", "docs"),
@@ -111,6 +112,39 @@ function escapeHtml(value) {
 
 function escapeScriptText(value) {
   return String(value).replace(/<\/script/gi, "<\\/script");
+}
+
+async function loadResourceCategories() {
+  try {
+    const raw = await readFile(RESOURCE_CATEGORIES_PATH, "utf8");
+    const parsed = JSON.parse(raw);
+    const list = Array.isArray(parsed) ? parsed : parsed.categories;
+    if (Array.isArray(list)) {
+      return list.filter((item) => item && item.id).map((item) => ({
+        id: String(item.id),
+        ja: String(item.ja || item.id),
+        en: String(item.en || item.id),
+      }));
+    }
+  } catch (error) {
+    if (!error || error.code !== "ENOENT") {
+      throw error;
+    }
+  }
+  return [{ id: "documentation", ja: "ドキュメント", en: "Documentation" }];
+}
+
+function categoryLabel(categories, id, lang) {
+  const found = categories.find((item) => item.id === id);
+  return found ? (found[lang] || found.id) : id;
+}
+
+function pageAssetPath(value, langConfig) {
+  const image = String(value || "");
+  if (image.startsWith("/assets/")) {
+    return `${langConfig.topAssetPrefix}${image.slice("/assets/".length)}`;
+  }
+  return image;
 }
 
 function parseFrontMatter(rawMarkdown, filePath) {
@@ -274,9 +308,10 @@ function renderEventItem(entry, lang) {
   ];
 
   if (entry.image) {
+    const imageSrc = pageAssetPath(entry.image, EVENT_LANG_CONFIG[lang]);
     lines.push(
       '                <div class="event-card-img">',
-      `                  <img src="${escapeHtml(entry.image)}" alt="${escapeHtml(entry.title)}" />`,
+      `                  <img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(entry.title)}" />`,
       "                </div>"
     );
   }
@@ -297,13 +332,29 @@ function renderEventItem(entry, lang) {
 function renderDocItem(entry, lang) {
   const { topArticlePrefix, topCtaLabel } = DOC_LANG_CONFIG[lang];
   const href = `${topArticlePrefix}/${entry.slug}`;
-  return [
-    '            <li class="resources-card">',
-    `              <h3>${escapeHtml(entry.title)}</h3>`,
-    `              <p>${escapeHtml(entry.summary)}</p>`,
-    `              <a href="${href}" class="resources-card-link">${topCtaLabel}</a>`,
-    "            </li>",
-  ].join("\n");
+  const imageSrc = pageAssetPath(entry.image, DOC_LANG_CONFIG[lang]);
+  const lines = [
+    '            <li class="event-card resources-doc-card" data-more="">',
+    `              <a href="${href}" class="event-card-inner">`,
+  ];
+  if (entry.image) {
+    lines.push(
+      '                <div class="event-card-img">',
+      `                  <img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(entry.title)}" loading="lazy" />`,
+      "                </div>"
+    );
+  }
+  lines.push(
+    '                <div class="event-card-body">',
+    `                  <div class="event-date">${escapeHtml(entry.dateLabel)}</div>`,
+    `                  <h3 class="event-title">${escapeHtml(entry.title)}</h3>`,
+    `                  <p class="event-desc">${escapeHtml(entry.summary)}</p>`,
+    `                  <span class="resources-card-link">${topCtaLabel}</span>`,
+    "                </div>",
+    "              </a>",
+    "            </li>"
+  );
+  return lines.join("\n");
 }
 
 async function loadDocEntriesForConfig(lang, langConfig) {
@@ -316,9 +367,30 @@ async function loadDocEntriesForConfig(lang, langConfig) {
   return entries;
 }
 
-async function updateTopPageDocs(entries, lang) {
+function renderDocCategoryGroup(category, entries, lang, categories) {
+  const label = categoryLabel(categories, category, lang);
+  const sorted = sortEntries(entries);
+  const itemsMarkup = sorted.map((e) => renderDocItem(e, lang)).join("\n");
+  return [
+    `          <div class="resources-category-group" id="docs-${escapeHtml(category)}">`,
+    `            <h3>${escapeHtml(label)}</h3>`,
+    '          <ul class="resources-card-grid">',
+    itemsMarkup,
+    "          </ul>",
+    "          </div>",
+  ].join("\n");
+}
+
+function cleanupLegacyDocSections(page) {
+  return page.replace(
+    /\s*<section[\s\S]*?Generated by generate-news\.mjs \(docs:(?!documentation\))[\s\S]*?<\/section>/g,
+    ""
+  );
+}
+
+async function updateTopPageDocs(entries, lang, categories) {
   const { topPagePath } = DOC_LANG_CONFIG[lang];
-  let page = await readFile(topPagePath, "utf8");
+  let page = cleanupLegacyDocSections(await readFile(topPagePath, "utf8"));
 
   const byCategory = new Map();
   for (const entry of entries) {
@@ -327,31 +399,28 @@ async function updateTopPageDocs(entries, lang) {
     byCategory.get(cat).push(entry);
   }
 
-  for (const [category, catEntries] of byCategory) {
-    const sorted = sortEntries(catEntries);
-    const itemsMarkup = sorted.map((e) => renderDocItem(e, lang)).join("\n");
-    const openMarker = `Generated by generate-news.mjs (docs:${category}). Edit Markdown files instead.`;
-    const closeMarker = `Generated by generate-news.mjs (docs:${category})`;
-    const replacement = [
-          `<!-- ${openMarker} -->`,
-          '          <ul class="resources-card-grid">',
-          itemsMarkup,
-          "          </ul>",
-          `          <!-- /${closeMarker} -->`,
-    ].join("\n");
+  const categoryOrder = [
+    ...categories.map((item) => item.id).filter((id) => byCategory.has(id)),
+    ...[...byCategory.keys()].filter((id) => !categories.some((item) => item.id === id)),
+  ];
+  const groupsMarkup = categoryOrder
+    .map((category) => renderDocCategoryGroup(category, byCategory.get(category), lang, categories))
+    .join("\n");
 
-    const escapedOpen = openMarker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const escapedClose = closeMarker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const pattern = new RegExp(
-      `[ \\t]*<!-- ${escapedOpen} -->[\\s\\S]*?<!-- /${escapedClose} -->`
-    );
-    if (!pattern.test(page)) {
-      throw new Error(
-        `Could not find docs marker for category "${category}" in ${topPagePath}`
-      );
-    }
-    page = page.replace(pattern, replacement);
+  const openMarker = "Generated by generate-news.mjs (docs:documentation). Edit Markdown files instead.";
+  const closeMarker = "Generated by generate-news.mjs (docs:documentation)";
+  const pattern = new RegExp(
+    `[ \\t]*<!-- ${openMarker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")} -->[\\s\\S]*?<!-- /${closeMarker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")} -->`
+  );
+  const replacement = [
+    `          <!-- ${openMarker} -->`,
+    groupsMarkup,
+    `          <!-- /${closeMarker} -->`,
+  ].join("\n");
+  if (!pattern.test(page)) {
+    throw new Error(`Could not find documentation marker in ${topPagePath}`);
   }
+  page = page.replace(pattern, replacement);
 
   await writeFile(topPagePath, page, "utf8");
 }
@@ -491,6 +560,7 @@ async function main() {
   await writeArticlePages(eventAllEntries, eventTranslationMap, "events", EVENT_LANG_CONFIG, template);
 
   // Process docs
+  const resourceCategories = await loadResourceCategories();
   const docAllEntries = [];
   for (const lang of Object.keys(DOC_LANG_CONFIG)) {
     const entries = await loadDocEntriesForConfig(lang, DOC_LANG_CONFIG[lang]);
@@ -498,14 +568,12 @@ async function main() {
       .filter((entry) => !entry.draft)
       .forEach((entry) => docAllEntries.push(entry));
   }
+  for (const lang of Object.keys(DOC_LANG_CONFIG)) {
+    const languageEntries = docAllEntries.filter((entry) => entry.lang === lang);
+    await updateTopPageDocs(languageEntries, lang, resourceCategories);
+  }
   if (docAllEntries.length > 0) {
     const docTranslationMap = buildTranslationMap(docAllEntries);
-    for (const lang of Object.keys(DOC_LANG_CONFIG)) {
-      const languageEntries = docAllEntries.filter((entry) => entry.lang === lang);
-      if (languageEntries.length > 0) {
-        await updateTopPageDocs(languageEntries, lang);
-      }
-    }
     await writeArticlePages(docAllEntries, docTranslationMap, "docs", DOC_LANG_CONFIG, template);
   }
 }
@@ -514,3 +582,7 @@ main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
+
+
+
+

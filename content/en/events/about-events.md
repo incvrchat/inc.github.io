@@ -2,17 +2,18 @@
 title: About the Events Section
 date: 2026-04-18
 dateLabel: 2026.04.18
-description: An overview of the events and performances held at INC, and how to use this section.
+description: INC plans to host a variety of performances and events including music, talks, and exhibitions. Check this page for upcoming events.
 slug: about-events
 lang: en
 translationKey: about-events
 summary: INC plans to host a variety of performances and events including music, talks, and exhibitions. Check this page for upcoming events.
-image: /assets/images/groupheader.png
+image: /assets/images/content/events/about-events/file_80459102-85b0-408b-864d-9c9d5a8c6470_blob-2.png
 ---
 
 ## About the Events Section
 
 INC (Intermedia Network Center) plans to host a variety of performances and events in VRChat on an ongoing basis.
+
 
 This section will list upcoming events as they are confirmed.
 
