@@ -1,41 +1,56 @@
 {
   "count": 5,
-  "active": false,
+  "active": true,
   "artworks": [
     {
       "title": "1",
       "caption": "2k",
       "aspect": 1.0,
       "size": "M",
-      "split": true
+      "split": false,
+      "plate": false,
+      "w": 1094,
+      "h": 1094
     },
     {
       "title": "2",
       "caption": "4k",
-      "aspect": 1.833,
+      "aspect": 1.0,
       "size": "L",
-      "split": true
+      "split": true,
+      "plate": true,
+      "w": 2500,
+      "h": 2500
     },
     {
       "title": "3",
-      "caption": "4k\r\n",
-      "aspect": 1.0,
+      "caption": "2k\r\n",
+      "aspect": 1.778,
       "size": "M",
-      "split": false
+      "split": false,
+      "plate": false,
+      "w": 1920,
+      "h": 1080
     },
     {
       "title": "4",
-      "caption": "4k",
-      "aspect": 0.737,
+      "caption": "2k",
+      "aspect": 1.5,
       "size": "LL",
-      "split": false
+      "split": true,
+      "plate": true,
+      "w": 4096,
+      "h": 2730
     },
     {
       "title": "5",
       "caption": "1k",
-      "aspect": 1.304,
+      "aspect": 0.571,
       "size": "S",
-      "split": false
+      "split": false,
+      "plate": false,
+      "w": 768,
+      "h": 1344
     }
   ]
 }
