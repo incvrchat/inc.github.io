@@ -27,9 +27,9 @@ INC plans to host the following kinds of events:
 - Meetups and social gatherings
 - Other events related to culture and the arts
 
-## How to Attend
+## How to Participate
 
-Events can be attended through the INC VRChat world or group. Please check each event page for details.
+You can join the event via a VRChat world or group. Please check the individual event pages for details.
 
 ## Updates
 
