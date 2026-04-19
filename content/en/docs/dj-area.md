@@ -37,7 +37,7 @@ Tessellation is applied, extracting the red component from the video’s RGB val
 
 If no video is playing, the wall shader automatically turns OFF.
 
-![](/inc.github.io/assets/images/content/docs/dj-area/VRChat_2025-10-28_02-43-11.933_1080x1920.png)
+![](/inc.github.io/assets/images/content/docs/dj-area/VRChat_2025-10-28_02-43-11.933_1080x1920.png){width=500}
 ---
 
 ## Admin Room
