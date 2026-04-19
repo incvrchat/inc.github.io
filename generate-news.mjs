@@ -131,7 +131,7 @@ async function loadResourceCategories() {
       throw error;
     }
   }
-  return [{ id: "documentation", ja: "ドキュメント", en: "Documentation" }];
+  return [];
 }
 
 function categoryLabel(categories, id, lang) {
@@ -579,7 +579,6 @@ main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
-
 
 
 
