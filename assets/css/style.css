@@ -1730,7 +1730,8 @@ footer {
   }
 
   .event-card-img {
-    width: 140px
+    width: 140px;
+    height: 140px
   }
 
   .event-title {
@@ -1878,10 +1879,13 @@ footer {
 .event-card-img {
   flex-shrink: 0;
   width: 120px;
+  height: 120px;
+  aspect-ratio: 1 / 1;
   overflow: hidden
 }
 
 .event-card-img img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover
