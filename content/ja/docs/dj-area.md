@@ -7,7 +7,7 @@ slug: dj-area
 lang: ja
 translationKey: dj-area
 summary: DJおよびライブイベントのために設計された専用エリアです。 映像入力に応じて変化するレイヤー状の投影システムと、映像・照明・音響を制御するためのアドミンルームが用意されています。
-image: /inc.github.io/assets/images/content/docs/dj-area/VRChat_2026-04-19_15-30-45.878_2560x1440.png
+image: /inc.github.io/assets/images/content/docs/dj-area/VRChat_2026-04-19_15-30-45.878_2560x1440.png/inc.github.io/assets/images/grouplink.png
 category: documentation
 ---
 
@@ -41,16 +41,20 @@ DJエリアの壁に設置されたモニターで、再生中の映像が投影
 
 ## アドミンルーム
 
-![](/inc.github.io/assets/images/content/docs/dj-area/2026-04-19-163958-2-2.png)
+
+![](/inc.github.io/assets/images/content/docs/dj-area/dj-admin_jp.png)
+
+### 1.AudioReverbFilterSettings
+
+> 【VRChat】ワールド音響調整アセット / AudioReverbFilterSettings【UdonProps】
+> https://booth.pm/ja/items/4941668
+
+グローバル同期でDJの音声のリバーブ設定を変更できます。
 
 ライブ・配信の運営に必要なギミックが集約されたルームです。
 AdminGuestPanelでAdminに追加されたユーザーのみ操作できます。
 
-### VizVid ビデオプレイヤー
-
-動画・ライブ配信のURLを入力するプレイヤーです。
-
-### UMHL VideoPlayerLighting
+### 2.UMHL VideoPlayerLighting
 
 > UMHLさん制作のVRChatワールド用ビデオライトギミック
 > https://umhl.booth.pm/items/6013645
@@ -61,23 +65,24 @@ AdminGuestPanelでAdminに追加されたユーザーのみ操作できます。
 **デフォルト：OFF**
 ライブを行う際は、このスイッチを手動でONにしてください。
 
-### リバーブ機能
-
-> 【VRChat】ワールド音響調整アセット / AudioReverbFilterSettings【UdonProps】
-> https://booth.pm/ja/items/4941668
-
-グローバル同期でDJの音声のリバーブ設定を変更できます。
-
-### AudioLink Controller
+### 3.AudioLink Controller
 
 AudioLinkのコントローラーです。
 
-### AdminGuestPanel
+### 4.VizVid ビデオプレイヤー プレイリスト
 
-現在インスタンスに参加しているオンラインユーザーの確認、およびAdminの追加・削除が行えるパネルです。
-Adminに追加されたユーザーはアドミンルームに入り、VizVid・リバーブ・壁シェーダーなどライブ専用ギミックの操作が可能になります。
+プレイリストです、現在は壁シェーダーテスト用の動画が入っています。
 
-### 壁シェーダー操作パネル
+### 5.VizVid ビデオプレイヤー
+
+動画・ライブ配信のURLを入力するプレイヤーです。
+
+### 6.壁シェーダー操作パネル
 
 現在操作不可です。
 初期状態は軽量かつ適切なパラメーターに調整済みのため、そのままで問題ありません。
+
+### 7.AdminGuestPanel
+
+現在インスタンスに参加しているオンラインユーザーの確認、およびAdminの追加・削除が行えるパネルです。
+Adminに追加されたユーザーはアドミンルームに入り、VizVid・リバーブ・壁シェーダーなどライブ専用ギミックの操作が可能になります。

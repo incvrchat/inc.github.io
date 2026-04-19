@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//w/UnityProjects/Test project-Topos_2/Assets/mocotchi/Udon/**)",
+      "Read(//w/UnityProjects/Test project-Topos_2/Assets/mocotchi/GallarySystem/Udon/**)"
+    ]
+  }
+}

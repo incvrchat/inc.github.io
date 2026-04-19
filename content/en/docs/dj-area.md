@@ -7,7 +7,7 @@ slug: dj-area
 lang: en
 translationKey: dj-area
 summary: This is a dedicated area designed for DJs and live events. It features a layered projection system that changes in response to video inputs, as well as an admin room for controlling video, lighting, and sound.
-image: /inc.github.io/assets/images/content/docs/dj-area/VRChat_2026-04-19_15-30-45.878_2560x1440.png
+image: /inc.github.io/assets/images/content/docs/dj-area/VRChat_2026-04-19_15-30-45.878_2560x1440.png/inc.github.io/assets/images/grouplink.png
 category: documentation
 ---
 
@@ -41,7 +41,7 @@ If no video is playing, the wall shader automatically turns off.
 
 ## Admin Room
 
-![](/inc.github.io/assets/images/content/docs/dj-area/2026-04-19-163958-2-2.png)
+![](/inc.github.io/assets/images/content/docs/dj-area/dj-admin_en.png)
 
 This room consolidates all the features necessary for managing live events and streams.
 Only users added as Admins via the AdminGuestPanel can operate it.
