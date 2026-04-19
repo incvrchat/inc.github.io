@@ -2,11 +2,11 @@
 title: DJ＆ライブパフォーマンスエリア
 date: 2026-04-19
 dateLabel: 2026.04.19
-description: DJおよびライブイベントのために設計された専用エリアです。 映像入力に応じて変化するレイヤー状の投影システムと、映像・照明・音響を制御するためのアドミンルームが用意されています。
+description: DJおよびライブイベントのために設計された専用エリアです。
 slug: dj-area
 lang: ja
 translationKey: dj-area
-summary: DJおよびライブイベントのために設計された専用エリアです。 映像入力に応じて変化するレイヤー状の投影システムと、映像・照明・音響を制御するためのアドミンルームが用意されています。
+summary: DJおよびライブイベントのために設計された専用エリアです。
 image: /inc.github.io/assets/images/content/docs/dj-area/VRChat_2025-10-28_02-43-11.933_1080x1920.png
 category: events
 ---
