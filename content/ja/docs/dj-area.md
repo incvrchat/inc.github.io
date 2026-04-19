@@ -8,7 +8,7 @@ lang: ja
 translationKey: dj-area
 summary: DJおよびライブイベントのために設計された専用エリアです。 映像入力に応じて変化するレイヤー状の投影システムと、映像・照明・音響を制御するためのアドミンルームが用意されています。
 image: /inc.github.io/assets/images/content/docs/dj-area/VRChat_2026-04-19_15-30-45.878_2560x1440.png
-category: events
+category: documentation
 ---
 
 # DJエリア
