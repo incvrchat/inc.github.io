@@ -258,6 +258,8 @@ Current categories:
 - inline code
 - Markdown links
 - Markdown images with `![alt](path)`
+- Image width/height options with `![alt](path){width=320}` or `![alt](path =320x180)`
+- Side-by-side image rows with `::: images`
 - bold
 - italic
 - fenced code blocks
@@ -268,6 +270,18 @@ Avoid assuming support for:
 - advanced nested list formatting
 - custom embedded HTML layouts
 - complex markdown extensions
+
+Image examples:
+
+```md
+![Wide image](/assets/images/example.png){width=640}
+![Half width](/assets/images/example.png){width=50%}
+
+::: images
+![Left](/assets/images/left.png)
+![Right](/assets/images/right.png)
+:::
+```
 
 ## Generator Notes
 

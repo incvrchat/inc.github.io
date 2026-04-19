@@ -348,10 +348,35 @@ nav p {
   padding: 0
 }
 
-.article-prose img {
+.article-prose .article-image {
+  display: block;
+  width: min(100%, var(--article-image-width, 100%));
+  max-width: 100%
+}
+
+.article-prose .article-image img {
+  display: block;
+  width: 100%;
   max-width: 100%;
-  height: auto;
+  height: var(--article-image-height, auto);
+  object-fit: contain;
   border-radius: 4px
+}
+
+.article-prose .article-image-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 14px;
+  align-items: start
+}
+
+.article-prose .article-image-row .article-image {
+  width: 100%;
+  justify-self: center
+}
+
+.article-prose .article-image-row .article-image[style*="--article-image-width"] {
+  width: min(100%, var(--article-image-width))
 }
 
 .article-prose blockquote {
@@ -2026,4 +2051,39 @@ footer {
   color: var(--color-gray);
   margin-top: 8px;
   font-weight: 500
+}
+
+#nav-list {
+  letter-spacing: 0
+}
+
+.nav-default a {
+  display: block;
+  line-height: 1.5;
+  overflow-wrap: anywhere
+}
+
+.article-nav-level-1 {
+  font-weight: 700
+}
+
+.article-nav-level-2 {
+  padding-left: 28px;
+  font-size: 13px
+}
+
+.article-nav-level-3 {
+  padding-left: 40px;
+  font-size: 13px
+}
+
+.article-nav-level-4 {
+  padding-left: 52px;
+  font-size: 12px
+}
+
+.article-nav-level-5,
+.article-nav-level-6 {
+  padding-left: 60px;
+  font-size: 12px
 }

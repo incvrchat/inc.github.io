@@ -18,14 +18,138 @@
       .replace(/'/g, "&#39;");
   }
 
+  const IMAGE_MARKDOWN_PATTERN = /!\[([^\]]*)\]\(([^)]+)\)(?:\{([^}]*)\})?/g;
+
+  function normalizeCssSize(value) {
+    const size = String(value || "").trim();
+    if (!size || size.toLowerCase() === "auto") {
+      return "";
+    }
+    if (/^\d+(?:\.\d+)?$/.test(size)) {
+      return `${size}px`;
+    }
+    if (/^\d+(?:\.\d+)?(?:px|%|rem|em|vw|vh)$/.test(size)) {
+      return size;
+    }
+    return "";
+  }
+
+  function parseImageTarget(rawTarget) {
+    const target = String(rawTarget || "").trim();
+    const sizeMatch = target.match(
+      /^(.*?)\s+=([0-9.]+(?:px|%|rem|em|vw|vh)?)?x([0-9.]+(?:px|%|rem|em|vw|vh)?)?$/
+    );
+
+    if (!sizeMatch) {
+      return {
+        src: target,
+        width: "",
+        height: "",
+      };
+    }
+
+    return {
+      src: sizeMatch[1].trim(),
+      width: normalizeCssSize(sizeMatch[2]),
+      height: normalizeCssSize(sizeMatch[3]),
+    };
+  }
+
+  function parseImageAttributes(rawAttributes) {
+    const options = {
+      width: "",
+      height: "",
+    };
+
+    String(rawAttributes || "")
+      .trim()
+      .split(/\s+/)
+      .forEach((attribute) => {
+        const match = attribute.match(/^(width|height|w|h)=["']?([^"']+)["']?$/i);
+        if (!match) {
+          return;
+        }
+
+        const key = match[1].toLowerCase();
+        const value = normalizeCssSize(match[2]);
+        if (!value) {
+          return;
+        }
+
+        if (key === "width" || key === "w") {
+          options.width = value;
+        } else {
+          options.height = value;
+        }
+      });
+
+    return options;
+  }
+
+  function renderImage(alt, rawTarget, rawAttributes) {
+    const target = parseImageTarget(rawTarget);
+    const attributes = parseImageAttributes(rawAttributes);
+    const width = attributes.width || target.width;
+    const height = attributes.height || target.height;
+    const style = [
+      width ? `--article-image-width:${width}` : "",
+      height ? `--article-image-height:${height}` : "",
+    ]
+      .filter(Boolean)
+      .join(";");
+    const styleAttribute = style ? ` style="${escapeAttribute(style)}"` : "";
+
+    return [
+      `<span class="article-image"${styleAttribute}>`,
+      `<img src="${escapeAttribute(target.src)}" alt="${escapeAttribute(
+        alt
+      )}" loading="lazy" />`,
+      "</span>",
+    ].join("");
+  }
+
+  function parseImageOnlyLine(line) {
+    const trimmed = line.trim();
+    const images = [];
+    let cursor = 0;
+    let match;
+
+    IMAGE_MARKDOWN_PATTERN.lastIndex = 0;
+    while ((match = IMAGE_MARKDOWN_PATTERN.exec(trimmed))) {
+      const separator = trimmed.slice(cursor, match.index).trim();
+      if (separator && separator !== "|") {
+        return [];
+      }
+
+      images.push(renderImage(match[1], match[2], match[3]));
+      cursor = IMAGE_MARKDOWN_PATTERN.lastIndex;
+    }
+
+    const tail = trimmed.slice(cursor).trim();
+    if (tail || !images.length) {
+      return [];
+    }
+
+    return images;
+  }
+
+  function renderImageGroup(images) {
+    if (images.length === 1) {
+      return images[0];
+    }
+
+    return `<div class="article-image-row">${images.join("")}</div>`;
+  }
+
+  function isImageRowFence(line) {
+    return /^:::\s*(?:images?|image-row|gallery)\s*$/i.test(line.trim());
+  }
+
   function renderInline(text) {
     let html = escapeHtml(text);
     html = html.replace(
-      /!\[([^\]]*)\]\(([^)]+)\)/g,
-      (_, alt, src) =>
-        `<img src="${escapeAttribute(src)}" alt="${escapeAttribute(
-          alt
-        )}" loading="lazy" />`
+      IMAGE_MARKDOWN_PATTERN,
+      (_, alt, src, attributes) => renderImage(alt, src, attributes)
     );
     html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
     html = html.replace(
@@ -164,12 +288,12 @@
           inCodeBlock = true;
           codeLines = [];
         }
-        return;
+        continue;
       }
 
       if (inCodeBlock) {
         codeLines.push(rawLine);
-        return;
+        continue;
       }
 
       if (!line.trim()) {
@@ -184,6 +308,44 @@
         flushList();
         flushQuote();
         html.push("<hr />");
+        continue;
+      }
+
+      if (isImageRowFence(line)) {
+        flushParagraph();
+        flushList();
+        flushQuote();
+        const images = [];
+        index += 1;
+
+        while (index < lines.length && !/^:::\s*$/.test(lines[index].trim())) {
+          images.push(...parseImageOnlyLine(lines[index]));
+          index += 1;
+        }
+
+        if (images.length) {
+          html.push(renderImageGroup(images));
+        }
+        continue;
+      }
+
+      const imageOnlyLine = parseImageOnlyLine(line);
+      if (imageOnlyLine.length) {
+        flushParagraph();
+        flushList();
+        flushQuote();
+        const images = [...imageOnlyLine];
+
+        while (
+          index + 1 < lines.length &&
+          lines[index + 1].trim() &&
+          parseImageOnlyLine(lines[index + 1]).length
+        ) {
+          index += 1;
+          images.push(...parseImageOnlyLine(lines[index]));
+        }
+
+        html.push(renderImageGroup(images));
         continue;
       }
 
@@ -288,8 +450,9 @@
     headings.forEach((heading) => {
       const item = document.createElement("li");
       item.className = "nav-default";
-      if (heading.tagName === "H3") {
-        item.classList.add("article-nav-child");
+      const level = Number(heading.tagName.replace("H", ""));
+      if (level) {
+        item.classList.add(`article-nav-level-${level}`);
       }
 
       const link = document.createElement("a");
@@ -443,7 +606,7 @@
   }
 
   function assignHeadingIds(articleRoot) {
-    const headings = articleRoot.querySelectorAll("h2, h3");
+    const headings = articleRoot.querySelectorAll("h1, h2, h3, h4, h5, h6");
     headings.forEach((heading, index) => {
       heading.id = `article-section-${index + 1}`;
     });
