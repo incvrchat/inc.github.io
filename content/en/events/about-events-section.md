@@ -7,7 +7,7 @@ slug: about-events-section
 lang: en
 translationKey: about-events-section
 summary: INC plans to host a variety of performances and events including music, talks, and exhibitions. Check this page for upcoming events.
-image: /assets/images/content/events/about-events/file_80459102-85b0-408b-864d-9c9d5a8c6470_blob-2.png
+image: /inc.github.io/assets/images/content/events/about-events/file_80459102-85b0-408b-864d-9c9d5a8c6470_blob-2.png
 ---
 
 ## About the Events Section

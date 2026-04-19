@@ -7,7 +7,7 @@ slug: about-events-section
 lang: ja
 translationKey: about-events-section
 summary: INCでは音楽・トーク・展示などの公演・イベントを随時開催予定です。このページでは開催予定のイベントをまとめて確認できます。
-image: /assets/images/content/events/about-events/file_80459102-85b0-408b-864d-9c9d5a8c6470_blob-2.png
+image: /inc.github.io/assets/images/content/events/about-events/file_80459102-85b0-408b-864d-9c9d5a8c6470_blob-2.png
 ---
 
 ## 公演・イベント情報セクションについて
