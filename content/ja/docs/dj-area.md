@@ -8,14 +8,13 @@ lang: ja
 translationKey: dj-area
 summary: DJおよびライブイベントのために設計された専用エリアです。 映像入力に応じて変化するレイヤー状の投影システムと、映像・照明・音響を制御するためのアドミンルームが用意されています。
 image: /inc.github.io/assets/images/content/docs/dj-area/VRChat_2025-10-28_02-43-11.933_1080x1920.png
-category: documentation
+category: events
 ---
 
 # DJエリア
 
 ワールドの一番奥（庭とは逆方向）に位置するエリアです。
 ![VRChat 2026 04 19 15 30 45.878 2560x1440 2 2 2 2](/inc.github.io/assets/images/content/docs/dj-area/VRChat_2026-04-19_15-30-45.878_2560x1440-2-2-2-2.png)
-
 
 ---
 
@@ -36,7 +35,7 @@ DJエリアの壁に設置されたモニターで、再生中の映像が投影
 
 ビデオを再生していない場合、壁シェーダーは自動的にOFFになります。
 
-![](/inc.github.io/assets/images/content/docs/dj-area/VRChat_2025-10-28_02-43-11.933_1080x1920.png)
+![](/inc.github.io/assets/images/content/docs/dj-area/VRChat_2025-10-28_02-43-11.933_1080x1920.png){width=200}
 ---
 
 # アドミンルーム
