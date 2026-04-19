@@ -105,52 +105,56 @@ Tessellation is applied, extracting the red component from the video’s RGB val
 - Videos containing text or fine details
 - Slides for lectures or presentations, etc.
 
-If no video is playing, the wall shader automatically turns off.
+If no video is playing, the wall shader automatically turns OFF.
 
 ---
 
 ## Admin Room
 
-![](/inc.github.io/assets/images/content/docs/dj-area/dj-admin_en.png)
+![dj admin en](/inc.github.io/assets/images/content/docs/dj-area/dj-admin_en.png)
 
-This room consolidates all the features necessary for managing live events and streams.
-Only users added as Admins via the AdminGuestPanel can operate it.
-
-### VizVid Video Player
-
-A player where you can enter URLs for videos and live streams.
-
-### UMHL VideoPlayerLighting
-
-> A video lighting feature for VRChat worlds created by UMHL
-> https://umhl.booth.pm/items/6013645
-
-This feature turns the lights on only while a video or live stream is playing.
-However, since the system is always running even when no video is playing, a switch is provided to force the lights to turn on globally (synchronized for all players).
-
-**Default: OFF**
-Please manually turn this switch ON when hosting a live stream.
-
-### Reverb Function
+### 1. AudioReverbFilterSettings
 
 > [VRChat] World Audio Adjustment Asset / AudioReverbFilterSettings [UdonProps]
 > https://booth.pm/ja/items/4941668
 
 You can change the reverb settings for the DJ's audio via global synchronization.
 
-### AudioLink Controller
+This room consolidates all the features necessary for managing live streams and broadcasts.
+Only users added as Admins via the AdminGuestPanel can operate this room.
+
+### 2. UMHL VideoPlayerLighting
+
+> A video lighting feature for VRChat worlds created by UMHL
+> https://umhl.booth.pm/items/6013645
+
+This feature turns the lights on only while a video is playing live.
+However, since the lights are always running even when no video is playing, a switch is provided to force them ON globally (synchronized for all players).
+
+**Default: OFF**
+Please manually turn this switch ON when hosting a live stream.
+
+### 3. AudioLink Controller
 
 This is the AudioLink controller.
 
-### AdminGuestPanel
+### 4. VizVid Video Player Playlist
 
-This panel allows you to view online users currently participating in the instance, as well as add or remove Admins.
-Users added as Admins can enter the Admin Room and operate live-specific features such as VizVid, reverb, and wall shaders.
+This is the playlist. It currently contains videos for wall shader testing.
 
-### Wall Shader Control Panel
+### 5. VizVid Video Player
+
+This is the player where you enter URLs for videos and live streams.
+
+### 6. Wall Shader Control Panel
 
 Currently unavailable.
-The initial settings are optimized for lightweight performance and appropriate parameters, so leaving them as is is fine.
+The initial settings are optimized for performance and appropriate parameters, so leaving them as is is fine.
+
+### 7. AdminGuestPanel
+
+This panel allows you to view online users currently participating in the instance, as well as add or remove Admins.
+Users added as Admins can enter the Admin Room and operate live-specific features such as VizVid, Reverb, and the Wall Shader.
     </script>
 
     <footer>
