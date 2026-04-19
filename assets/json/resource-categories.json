@@ -4,6 +4,11 @@
       "id": "documentation",
       "ja": "ドキュメント",
       "en": "Documentation"
+    },
+    {
+      "id": "events",
+      "ja": "イベントガイド",
+      "en": "Event Guide"
     }
   ]
 }
