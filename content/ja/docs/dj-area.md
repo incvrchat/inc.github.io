@@ -7,7 +7,7 @@ slug: dj-area
 lang: ja
 translationKey: dj-area
 summary: DJおよびライブイベントのために設計された専用エリアです。 映像入力に応じて変化するレイヤー状の投影システムと、映像・照明・音響を制御するためのアドミンルームが用意されています。
-image: /inc.github.io/assets/images/content/docs/dj-area/VRChat_2026-04-19_15-30-45.878_2560x1440-2-2-2.png
+image: /inc.github.io/assets/images/content/docs/dj-area/VRChat_2026-04-19_15-30-45.878_2560x1440.png
 category: events
 ---
 
@@ -16,7 +16,7 @@ category: events
 ワールドの一番奥（庭とは逆方向）に位置するエリアです。
 
 
-![](/inc.github.io/assets/images/content/docs/dj-area/VRChat_2026-04-19_15-30-45.878_2560x1440-2-2-2.png)
+![](/inc.github.io/assets/images/content/docs/dj-area/VRChat_2026-04-19_15-30-45.878_2560x1440.png)
 
 ---
 
@@ -41,7 +41,7 @@ DJエリアの壁に設置されたモニターで、再生中の映像が投影
 
 ## アドミンルーム
 
-![](/inc.github.io/assets/images/content/docs/dj-area/2026-04-19-163958-2.png)
+![](/inc.github.io/assets/images/content/docs/dj-area/2026-04-19-163958-2-2.png)
 
 ライブ・配信の運営に必要なギミックが集約されたルームです。
 AdminGuestPanelでAdminに追加されたユーザーのみ操作できます。
