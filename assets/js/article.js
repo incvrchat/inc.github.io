@@ -30,11 +30,72 @@
     html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
     html = html.replace(
       /\[([^\]]+)\]\(([^)]+)\)/g,
-      '<a href="$2" target="_blank" rel="noreferrer">$1</a>'
+      (_, label, href) =>
+        `<a href="${escapeAttribute(href)}" target="_blank" rel="noreferrer">${label}</a>`
     );
+    html = html.replace(/~~([^~]+)~~/g, "<del>$1</del>");
     html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
     return html;
+  }
+
+  function isHorizontalRule(line) {
+    return /^ {0,3}([-*_])(?:\s*\1){2,}\s*$/.test(line);
+  }
+
+  function isTableRow(line) {
+    return line.includes("|") && !isHorizontalRule(line);
+  }
+
+  function splitTableRow(line) {
+    return line
+      .trim()
+      .replace(/^\|/, "")
+      .replace(/\|$/, "")
+      .split("|")
+      .map((cell) => cell.trim());
+  }
+
+  function isTableSeparator(line) {
+    if (!isTableRow(line)) {
+      return false;
+    }
+    return splitTableRow(line).every((cell) => /^:?-{3,}:?$/.test(cell));
+  }
+
+  function renderTable(headerLine, separatorLine, bodyLines) {
+    const headers = splitTableRow(headerLine);
+    const aligns = splitTableRow(separatorLine).map((cell) => {
+      const left = cell.startsWith(":");
+      const right = cell.endsWith(":");
+      if (left && right) return "center";
+      if (right) return "right";
+      if (left) return "left";
+      return "";
+    });
+    const rows = bodyLines.map(splitTableRow);
+
+    const alignAttr = (index) =>
+      aligns[index] ? ` style="text-align:${aligns[index]}"` : "";
+
+    return [
+      "<div class=\"article-table-wrap\"><table>",
+      "<thead><tr>",
+      headers
+        .map((cell, index) => `<th${alignAttr(index)}>${renderInline(cell)}</th>`)
+        .join(""),
+      "</tr></thead>",
+      "<tbody>",
+      rows
+        .map((row) =>
+          `<tr>${headers
+            .map((_, index) => `<td${alignAttr(index)}>${renderInline(row[index] || "")}</td>`)
+            .join("")}</tr>`
+        )
+        .join(""),
+      "</tbody>",
+      "</table></div>",
+    ].join("");
   }
 
   function renderMarkdown(markdown) {
@@ -46,6 +107,7 @@
     let listItems = [];
     let inCodeBlock = false;
     let codeLines = [];
+    let quoteLines = [];
 
     function flushParagraph() {
       if (!paragraph.length) {
@@ -68,17 +130,32 @@
       listItems = [];
     }
 
+    function flushQuote() {
+      if (!quoteLines.length) {
+        return;
+      }
+      const inner = quoteLines
+        .join("\n")
+        .split(/\n{2,}/)
+        .map((part) => `<p>${renderInline(part.trim()).replace(/\n/g, "<br>")}</p>`)
+        .join("");
+      html.push(`<blockquote>${inner}</blockquote>`);
+      quoteLines = [];
+    }
+
     function flushCodeBlock() {
       html.push(`<pre><code>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
       codeLines = [];
     }
 
-    lines.forEach((rawLine) => {
+    for (let index = 0; index < lines.length; index += 1) {
+      const rawLine = lines[index];
       const line = rawLine.trimEnd();
 
       if (line.startsWith("```")) {
         flushParagraph();
         flushList();
+        flushQuote();
 
         if (inCodeBlock) {
           flushCodeBlock();
@@ -98,46 +175,84 @@
       if (!line.trim()) {
         flushParagraph();
         flushList();
-        return;
+        flushQuote();
+        continue;
+      }
+
+      if (isHorizontalRule(line)) {
+        flushParagraph();
+        flushList();
+        flushQuote();
+        html.push("<hr />");
+        continue;
+      }
+
+      if (isTableRow(line) && lines[index + 1] && isTableSeparator(lines[index + 1])) {
+        flushParagraph();
+        flushList();
+        flushQuote();
+        const separatorLine = lines[index + 1];
+        const bodyLines = [];
+        index += 2;
+        while (index < lines.length && lines[index].trim() && isTableRow(lines[index])) {
+          bodyLines.push(lines[index]);
+          index += 1;
+        }
+        index -= 1;
+        html.push(renderTable(line, separatorLine, bodyLines));
+        continue;
       }
 
       const headingMatch = line.match(/^(#{1,6})\s+(.*)$/);
       if (headingMatch) {
         flushParagraph();
         flushList();
+        flushQuote();
         const level = headingMatch[1].length;
         html.push(`<h${level}>${renderInline(headingMatch[2])}</h${level}>`);
-        return;
+        continue;
+      }
+
+      const quoteMatch = line.match(/^ {0,3}>\s?(.*)$/);
+      if (quoteMatch) {
+        flushParagraph();
+        flushList();
+        quoteLines.push(quoteMatch[1]);
+        continue;
       }
 
       const unorderedMatch = line.match(/^\s*[-*]\s+(.*)$/);
       if (unorderedMatch) {
         flushParagraph();
+        flushQuote();
         if (listType && listType !== "ul") {
           flushList();
         }
         listType = "ul";
         listItems.push(unorderedMatch[1]);
-        return;
+        continue;
       }
 
       const orderedMatch = line.match(/^\s*\d+\.\s+(.*)$/);
       if (orderedMatch) {
         flushParagraph();
+        flushQuote();
         if (listType && listType !== "ol") {
           flushList();
         }
         listType = "ol";
         listItems.push(orderedMatch[1]);
-        return;
+        continue;
       }
 
       flushList();
+      flushQuote();
       paragraph.push(line.trim());
-    });
+    }
 
     flushParagraph();
     flushList();
+    flushQuote();
 
     if (inCodeBlock) {
       flushCodeBlock();
