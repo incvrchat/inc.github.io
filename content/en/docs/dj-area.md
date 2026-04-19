@@ -8,7 +8,7 @@ lang: en
 translationKey: dj-area
 summary: This is a dedicated area designed for DJs and live events. It features a layered projection system that changes in response to video inputs, as well as an admin room for controlling video, lighting, and sound.
 image: /inc.github.io/assets/images/content/docs/dj-area/VRChat_2025-10-28_02-43-11.933_1080x1920.png
-category: events
+category: documentation
 ---
 
 # DJ Area
