@@ -8,6 +8,7 @@ lang: ja
 translationKey: for-those-interested-in-exhibiting-at-the-gallery
 summary: 展示のためのギャラリーエリアについてご紹介します。
 category: events
+order: 6
 ---
 
 # ギャラリーについて

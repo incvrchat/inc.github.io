@@ -8,6 +8,7 @@ lang: en
 translationKey: facilities-and-features-guide
 summary: We’ll introduce the various areas within the World and explain how to use the convenient systems and menus that will help you with your tasks and interactions.
 category: facility-guide
+order: 3
 ---
 
 ## Entrance

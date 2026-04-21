@@ -8,6 +8,7 @@ lang: ja
 translationKey: introduction-to-menu-features
 summary: メニューを活用することで、INC内でのユーザー設定が可能です。
 category: facility-guide
+order: 7
 ---
 
 # メニュー機能の紹介

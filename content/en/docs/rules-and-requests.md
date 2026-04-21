@@ -8,6 +8,7 @@ lang: en
 translationKey: rules-and-requests
 summary: INC's rules comply with the VRChat Community Guidelines.
 category: user-guide
+order: 2
 ---
 
 # Basic Rules

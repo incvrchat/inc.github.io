@@ -8,6 +8,7 @@ lang: en
 translationKey: for-those-who-wish-to-post-a-poster
 summary: INC is currently accepting submissions for posters to be displayed in the World.
 category: events
+order: 4
 ---
 
 # For Those Interested in Posting Posters

@@ -8,6 +8,7 @@ lang: ja
 translationKey: rules-and-requests
 summary: INCのルールはVRChatコミュニティガイドラインに準拠します。
 category: user-guide
+order: 2
 ---
 
 # 基本ルール

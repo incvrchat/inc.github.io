@@ -8,6 +8,7 @@ lang: en
 translationKey: for-those-interested-in-exhibiting-at-the-gallery
 summary: Here is an introduction to the gallery area for exhibitions.
 category: events
+order: 6
 ---
 
 # About the Gallery

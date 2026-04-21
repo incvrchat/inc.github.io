@@ -8,6 +8,7 @@ lang: ja
 translationKey: facilities-and-features-guide
 summary: ワールド内の各エリアの紹介や、作業・交流に役立つ便利なシステム・メニューの使い方を解説します。
 category: facility-guide
+order: 3
 ---
 
 ## エントランス

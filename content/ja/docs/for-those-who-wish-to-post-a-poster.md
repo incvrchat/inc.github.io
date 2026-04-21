@@ -8,6 +8,7 @@ lang: ja
 translationKey: for-those-who-wish-to-post-a-poster
 summary: INCではワールド内に掲載させていただくポスターを募集いたします。
 category: events
+order: 4
 ---
 
 # ポスターを掲載したい方へ

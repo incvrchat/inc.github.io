@@ -9,6 +9,7 @@ translationKey: dj-area
 summary: 権限を与えられているユーザーはDJエリアを多機能に利用することができます。
 image: /inc.github.io/assets/images/content/docs/dj-area/VRChat_2025-10-28_02-43-11.933_1080x1920.png
 category: events
+order: 5
 ---
 
 # DJエリア

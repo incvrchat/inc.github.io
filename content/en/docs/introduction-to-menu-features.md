@@ -8,6 +8,7 @@ lang: en
 translationKey: introduction-to-menu-features
 summary: You can configure user settings within INC using the menu.
 category: facility-guide
+order: 7
 ---
 
 # Introduction to Menu Features

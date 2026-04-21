@@ -8,6 +8,7 @@ lang: ja
 translationKey: what-is-inc
 summary: VRChat上に常設されている日本語話者向けの集会場ワールドです。
 category: user-guide
+order: 1
 ---
 
 # INCとは

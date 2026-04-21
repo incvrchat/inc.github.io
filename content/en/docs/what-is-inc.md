@@ -8,6 +8,7 @@ lang: en
 translationKey: what-is-inc
 summary: This is a permanent gathering place in VRChat for Japanese speakers.
 category: user-guide
+order: 1
 ---
 
 # About INC
