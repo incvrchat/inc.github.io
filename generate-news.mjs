@@ -397,11 +397,11 @@ function renderArticleBreadcrumb(entry, dirName, categories) {
   }
   items.push({ label: entry.title, href: `./${entry.slug}` });
   return [
-    '<nav class="article-breadcrumb" aria-label="Article location">',
+    '<div class="article-breadcrumb" role="navigation" aria-label="Article location">',
     items
       .map((item) => `<a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`)
       .join('<span aria-hidden="true">/</span>'),
-    "</nav>",
+    "</div>",
   ].join("");
 }
 
