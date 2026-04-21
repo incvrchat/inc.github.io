@@ -9,6 +9,11 @@
       "id": "facility-guide",
       "ja": "施設・機能ガイド",
       "en": "World & Feature Guide"
+    },
+    {
+      "id": "user-guide",
+      "ja": "利用案内",
+      "en": "Guidelines"
     }
   ]
 }
