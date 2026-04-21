@@ -241,6 +241,19 @@ async function loadEntriesForConfig(lang, langConfig) {
 
 function sortEntries(entries) {
   return [...entries].sort((left, right) => {
+    const leftOrder = Number.parseInt(left.order || "", 10);
+    const rightOrder = Number.parseInt(right.order || "", 10);
+    const leftHasOrder = Number.isFinite(leftOrder);
+    const rightHasOrder = Number.isFinite(rightOrder);
+    if (leftHasOrder || rightHasOrder) {
+      if (leftHasOrder && rightHasOrder && leftOrder !== rightOrder) {
+        return leftOrder - rightOrder;
+      }
+      if (leftHasOrder !== rightHasOrder) {
+        return leftHasOrder ? -1 : 1;
+      }
+    }
+
     const leftDate = new Date(left.date).getTime();
     const rightDate = new Date(right.date).getTime();
 
@@ -329,7 +342,7 @@ function renderEventItem(entry, lang) {
 }
 
 function renderDocItem(entry, lang) {
-  const { topArticlePrefix, topAssetPrefix, topCtaLabel } = DOC_LANG_CONFIG[lang];
+  const { topArticlePrefix, topAssetPrefix } = DOC_LANG_CONFIG[lang];
   const href = `${topArticlePrefix}/${entry.slug}`;
   const imageSrc = entry.image
     ? pageAssetPath(entry.image, DOC_LANG_CONFIG[lang])
@@ -346,12 +359,50 @@ function renderDocItem(entry, lang) {
     `                  <div class="event-date">${escapeHtml(entry.dateLabel)}</div>`,
     `                  <h3 class="event-title">${escapeHtml(entry.title)}</h3>`,
     `                  <p class="event-desc">${escapeHtml(entry.summary)}</p>`,
-    `                  <span class="resources-card-link">${topCtaLabel}</span>`,
     "                </div>",
     "              </a>",
     "            </li>"
   );
   return lines.join("\n");
+}
+
+function articleTypeLabel(dirName, lang) {
+  const labels = {
+    news: { ja: "ニュース", en: "News" },
+    events: { ja: "イベント", en: "Events" },
+    docs: { ja: "ドキュメント", en: "Documentation" },
+  };
+  return (labels[dirName] && labels[dirName][lang]) || dirName;
+}
+
+function articleIndexHref(dirName, lang) {
+  if (dirName === "news") {
+    return lang === "en" ? "../#news" : "../#news";
+  }
+  if (dirName === "events") {
+    return lang === "en" ? "../#events" : "../#events";
+  }
+  return "../resources/#documentation";
+}
+
+function renderArticleBreadcrumb(entry, dirName, categories) {
+  const items = [
+    { label: articleTypeLabel(dirName, entry.lang), href: articleIndexHref(dirName, entry.lang) },
+  ];
+  if (dirName === "docs" && entry.category) {
+    items.push({
+      label: categoryLabel(categories || [], entry.category, entry.lang),
+      href: `../resources/#docs-${entry.category}`,
+    });
+  }
+  items.push({ label: entry.title, href: `./${entry.slug}` });
+  return [
+    '<nav class="article-breadcrumb" aria-label="Article location">',
+    items
+      .map((item) => `<a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`)
+      .join('<span aria-hidden="true">/</span>'),
+    "</nav>",
+  ].join("");
 }
 
 async function loadDocEntriesForConfig(lang, langConfig) {
@@ -464,7 +515,7 @@ async function updateTopPageEvents(entries, lang) {
   await writeFile(topPagePath, updated, "utf8");
 }
 
-function renderArticlePage(entry, pair, template, dirName, langConfig) {
+function renderArticlePage(entry, pair, template, dirName, langConfig, categories = []) {
   const isEnglish = entry.lang === "en";
   const counterpart = isEnglish ? pair.ja : pair.en;
   const pageTitle = `${entry.title} | ${SITE_NAME}`;
@@ -484,6 +535,7 @@ function renderArticlePage(entry, pair, template, dirName, langConfig) {
     EN_LINK: isEnglish
       ? `./${entry.slug}`
       : `../en/${dirName}/${counterpart.slug}`,
+    ARTICLE_BREADCRUMB: renderArticleBreadcrumb(entry, dirName, categories),
     FALLBACK_MARKDOWN: escapeScriptText(entry.body),
   };
 
@@ -492,14 +544,14 @@ function renderArticlePage(entry, pair, template, dirName, langConfig) {
   }, template);
 }
 
-async function writeArticlePages(entries, translationMap, dirName, langConfig, template) {
+async function writeArticlePages(entries, translationMap, dirName, langConfig, template, categories = []) {
   for (const entry of entries) {
     const pair = translationMap.get(entry.translationKey);
     const outputPath = path.join(
       langConfig[entry.lang].articleDir,
       `${entry.slug}.html`
     );
-    const html = renderArticlePage(entry, pair, template, dirName, langConfig);
+    const html = renderArticlePage(entry, pair, template, dirName, langConfig, categories);
     await mkdir(path.dirname(outputPath), { recursive: true });
     await writeFile(outputPath, html, "utf8");
   }
@@ -571,7 +623,7 @@ async function main() {
   }
   if (docAllEntries.length > 0) {
     const docTranslationMap = buildTranslationMap(docAllEntries);
-    await writeArticlePages(docAllEntries, docTranslationMap, "docs", DOC_LANG_CONFIG, template);
+    await writeArticlePages(docAllEntries, docTranslationMap, "docs", DOC_LANG_CONFIG, template, resourceCategories);
   }
 }
 
@@ -579,6 +631,3 @@ main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
-
-
-
