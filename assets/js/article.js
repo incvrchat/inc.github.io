@@ -98,6 +98,15 @@
       .filter(Boolean)
       .join(";");
     const styleAttribute = style ? ` style="${escapeAttribute(style)}"` : "";
+    if (/\.(mp4|webm|mov|m4v)(?:[?#].*)?$/i.test(target.src)) {
+      return [
+        `<span class="article-video"${styleAttribute}>`,
+        `<video controls playsinline preload="metadata" src="${escapeAttribute(
+          target.src
+        )}"></video>`,
+        "</span>",
+      ].join("");
+    }
 
     return [
       `<span class="article-image"${styleAttribute}>`,
