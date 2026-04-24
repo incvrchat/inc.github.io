@@ -2,11 +2,11 @@
 title: ホームページを公開しました
 date: 2026-04-12
 dateLabel: 2026.04.12
-description: ホームページを公開しました。INC の概要や空間構成、ルール、イベント情報をこちらで順次更新していきます。
+description: ホームページを公開しました。INC の概要や空間構成、ルール、イベント情報を順次更新していきます。
 slug: homepage-opened
 lang: ja
 translationKey: homepage-opened
-summary: ホームページを公開しました。INC の概要や空間構成、ルール、イベント情報をこちらで順次更新していきます。
+summary: ホームページを公開しました。INC の概要や空間構成、ルール、イベント情報を順次更新していきます。
 ---
 
 # ホームページを公開しました
