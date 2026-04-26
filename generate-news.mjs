@@ -528,6 +528,7 @@ function renderArticlePage(entry, pair, template, dirName, langConfig, categorie
     ASSET_BASE: entryLangConfig.assetBase,
     MARKDOWN_SRC: `${entryLangConfig.markdownPrefix}/${entry.slug}.md`,
     HOME_LINK: entryLangConfig.homeLink,
+    HOME_LABEL: isEnglish ? "Back to Home" : "ホームへ戻る",
     HEADER_HOME_LINK: entryLangConfig.headerHomeLink,
     JP_LINK: isEnglish
       ? `../../${dirName}/${pair.ja.slug}`

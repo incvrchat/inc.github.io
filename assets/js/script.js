@@ -3,6 +3,12 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     const assetBase = document.body.dataset.assetBase || "./assets/";
+    const homeLink = document.body.dataset.homeLink || "";
+    const homeLabel =
+      document.body.dataset.homeLabel ||
+      (document.documentElement.lang === "ja"
+        ? "ホームへ戻る"
+        : "Back to Home");
 
     // @@@ 大学ロゴを違う要素に複製する
     const targetLogo = document.querySelector(".logo-university img");
@@ -18,6 +24,19 @@
     const dropLists = document.querySelectorAll(".tab-wrapp div");
     function createGlobalNav() {
       const navList = document.createElement("ul");
+
+      if (homeLink) {
+        const homeItem = document.createElement("li");
+        homeItem.classList.add("nav-default", "normal");
+
+        const homeAnchor = document.createElement("a");
+        homeAnchor.href = homeLink;
+        homeAnchor.textContent = homeLabel;
+
+        homeItem.appendChild(homeAnchor);
+        navList.appendChild(homeItem);
+      }
+
       sections.forEach((section, index) => {
         const sectionTitle = section.getAttribute("data-title");
         const sectionUniqeClass = section.getAttribute("data-class");
