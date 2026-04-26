@@ -14,7 +14,7 @@
     },
     {
       "title": "2",
-      "caption": "4k",
+      "caption": "The New York Public Library\r\n",
       "aspect": 1.235,
       "size": "L",
       "split": false,
@@ -34,7 +34,7 @@
     },
     {
       "title": "4",
-      "caption": "2k",
+      "caption": "The New York Public Library\r\n",
       "aspect": 0.812,
       "size": "LL",
       "split": true,
@@ -63,8 +63,8 @@
       "h": 1600
     },
     {
-      "title": "aaa",
-      "caption": "aaaaa",
+      "title": "7",
+      "caption": "The New York Public Library\r\n",
       "aspect": 0.807,
       "size": "M",
       "split": false,
@@ -93,8 +93,8 @@
       "h": 1810
     },
     {
-      "title": "",
-      "caption": "",
+      "title": "10",
+      "caption": "The New York Public Library\r\n",
       "aspect": 1.183,
       "size": "LL",
       "split": false,
