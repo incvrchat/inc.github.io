@@ -1,107 +1,107 @@
 {
   "count": 10,
   "active": true,
-  "flyer": true,
   "artworks": [
     {
       "title": "1",
       "caption": "2k",
-      "aspect": 1.0,
+      "aspect": 0.775,
       "size": "M",
-      "split": true,
+      "split": false,
       "plate": false,
-      "w": 2500,
-      "h": 2500
+      "w": 1240,
+      "h": 1600
     },
     {
       "title": "2",
       "caption": "4k",
-      "aspect": 0.558,
+      "aspect": 1.235,
       "size": "L",
-      "split": true,
+      "split": false,
       "plate": true,
-      "w": 1536,
-      "h": 2752
+      "w": 1600,
+      "h": 1296
     },
     {
       "title": "3",
       "caption": "2k\r\n",
-      "aspect": 1.5,
+      "aspect": 1.473,
       "size": "M",
       "split": false,
       "plate": false,
-      "w": 540,
-      "h": 360
+      "w": 760,
+      "h": 516
     },
     {
       "title": "4",
       "caption": "2k",
-      "aspect": 0.9,
+      "aspect": 0.812,
       "size": "LL",
-      "split": false,
+      "split": true,
       "plate": true,
-      "w": 922,
-      "h": 1024
+      "w": 2078,
+      "h": 2560
     },
     {
       "title": "5",
       "caption": "1k",
-      "aspect": 0.873,
+      "aspect": 1.991,
       "size": "S",
-      "split": false,
+      "split": true,
       "plate": false,
-      "w": 894,
-      "h": 1024
+      "w": 2560,
+      "h": 1286
     },
     {
       "title": "",
       "caption": "",
-      "aspect": 1.5,
+      "aspect": 0.774,
       "size": "M",
-      "split": true,
+      "split": false,
       "plate": false,
-      "w": 4096,
-      "h": 2730
+      "w": 1238,
+      "h": 1600
     },
     {
       "title": "aaa",
       "caption": "aaaaa",
-      "aspect": 0.707,
+      "aspect": 0.807,
       "size": "M",
       "split": false,
       "plate": true,
-      "w": 188,
-      "h": 266
+      "w": 1292,
+      "h": 1600
     },
     {
       "title": "",
       "caption": "",
-      "aspect": 1.133,
+      "aspect": 0.815,
       "size": "M",
       "split": false,
       "plate": false,
-      "w": 1088,
-      "h": 960
+      "w": 1304,
+      "h": 1600
     },
     {
       "title": "",
       "caption": "",
-      "aspect": 0.558,
+      "aspect": 1.414,
       "size": "L",
       "split": true,
       "plate": false,
-      "w": 1536,
-      "h": 2752
+      "w": 2560,
+      "h": 1810
     },
     {
       "title": "",
       "caption": "",
-      "aspect": 1.0,
+      "aspect": 1.183,
       "size": "LL",
       "split": false,
       "plate": true,
-      "w": 1094,
-      "h": 1094
+      "w": 1600,
+      "h": 1352
     }
-  ]
+  ],
+  "flyer": true
 }
